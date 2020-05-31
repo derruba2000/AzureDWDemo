@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Azure BLOB"
+  DTS:DTSID="{4B334CD0-FDE8-413F-A673-3660A26EA6C1}"
+  DTS:CreationName="AzureStorage">
+  <DTS:ObjectData>
+    <AzureStorageConnectionManager
+      ConnectionString="AccountName=demojrblob;DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;">
+      <AccountKey
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAcnCjW3bmi0K4XSsD3mVagwAAAAACAAAAAAAQZgAAAAEAACAAAABI1ZhcRYhNSrBTRf5z9c7r21UZ3WC0/1XeZTHwOm7SLwAAAAAOgAAAAAIAACAAAACz4qWyAp9WZCS9JspJZhogRSbGr/MSlwK3U0NPN71viIAAAAC5I2iMOnYeJUPJsjYjHZZ9U8kEzHXUsPZLVy9ettlCiFr3/aSnWscCqDc2m4PpY5ZUmaKMewAHhmsjWpPJiSRpz+GAoD1Oa7w5cXiLxKeQ1bRod58fMPs0SPyBdyZGP3bU1M4U0UTrvOMrSiTCiuLxWpqlnCf9qtSYXJN8D9Uj8UAAAAA0Kxl95H73YZxljRuaavAGpccBDcq3M6rpPINb726g8KaIQDm0G7tnExTf80d16HVm62CylMU50MeNS68ecvFa</AccountKey>
+    </AzureStorageConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

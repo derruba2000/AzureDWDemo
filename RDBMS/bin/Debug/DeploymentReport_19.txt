@@ -1,0 +1,21 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The column [dbo].[fact_Quotes].[HASH_fact] is being dropped, data loss could occur.
+
+** User actions
+     Alter
+       [dbo].[fact_Quotes] (Table)
+     Create
+       [dbo].[vw_fact_Quotes] (View)
+       [dbo].[vw_fact_Quotes_NewData] (View)
+
+** Supporting actions
+
+The column [dbo].[fact_Quotes].[HASH_fact] is being dropped, data loss could occur.
+

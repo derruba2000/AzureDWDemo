@@ -1,0 +1,23 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [dbo].[dim_Employment] (Table)
+       [dbo].[dim_Family] (Table)
+       [dbo].[dim_Personal] (Table)
+       [dbo].[dim_ProductInfo] (Table)
+       [dbo].[fact_Quotes] (Table)
+       [dbo].[fact_QuotesNewData] (Table)
+       Default Constraint: unnamed constraint on [dbo].[fact_Quotes] (Default Constraint)
+     Alter
+       [staging].[vw_InsuranceQuotes] (View)
+
+** Supporting actions
