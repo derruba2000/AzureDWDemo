@@ -25,7 +25,7 @@ steps:
       Write-Host "$(Get-Date) Build Id,Number: $(Build.BuildId), $(Build.BuildNumber)";
       Write-Host "$(Get-Date) Binaries Folder:$(Build.BinariesDirectory), Build Definition Name:$(Build.DefinitionName), Build StagingDirectory Name:$(Build.StagingDirectory)";
       Write-Host "$(Get-Date) Build source Version:$(Build.SourceVersion), Build Source Branch:$(Build.SourceBranch), Build Repository Name: $(Build.Repository.Name)";
-      Write-Host "$(Get-Date) $((Get-ChildItem).Name)"
+      Write-Host "$(Get-Date) $((Get-ChildItem).FullName)"
 
 - task: SqlAzureDacpacDeployment@1
   inputs:
