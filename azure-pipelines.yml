@@ -29,7 +29,7 @@ steps:
     azureSubscription: 'Pay-As-You-Go($(AzureSubscriptionX))'
     AuthenticationType: 'server'
     ServerName: 'demojrdw.database.windows.net'
-    DatabaseName: 'demojrdwdb'
+    DatabaseName: 'demodwjrdb'
     SqlUsername: '$(SQLUser)'
     SqlPassword: '$(SQLPassword)'
     deployType: 'DacpacTask'
