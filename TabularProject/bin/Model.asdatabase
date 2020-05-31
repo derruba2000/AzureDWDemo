@@ -2,7 +2,6 @@
   "name": "DWDemoProj",
   "compatibilityLevel": 1400,
   "model": {
-    "name": "QuoteModel",
     "culture": "en-GB",
     "dataSources": [
       {
@@ -18,10 +17,7 @@
           "query": null
         },
         "credential": {
-          "AuthenticationKind": "UsernamePassword",
-          "kind": "SQL",
-          "path": "localhost;demodwjrdb",
-          "Username": "ssisSVC",
+          "AuthenticationKind": "ServiceAccount",
           "EncryptConnection": false
         }
       }
@@ -75,41 +71,6 @@
         ]
       },
       {
-        "name": "Employment",
-        "columns": [
-          {
-            "name": "srky_Employment",
-            "dataType": "string",
-            "isHidden": true,
-            "sourceColumn": "srky_Employment"
-          },
-          {
-            "name": "Employment Info",
-            "dataType": "string",
-            "sourceColumn": "Employment Info"
-          }
-        ],
-        "partitions": [
-          {
-            "name": "Partition",
-            "dataView": "full",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = _bridge_Employment,",
-                "    #\"Removed Columns\" = Table.RemoveColumns(Source,{\"srky_Employment_Quote\", \"Value\"}),",
-                "    #\"Duplicated Column\" = Table.DuplicateColumn(#\"Removed Columns\", \"srky_Employment\", \"srky_Employment - Copy\"),",
-                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Duplicated Column\",{{\"srky_Employment - Copy\", \"Employment Info\"}}),",
-                "    #\"Removed Duplicates\" = Table.Distinct(#\"Renamed Columns\", {\"Employment Info\"})",
-                "in",
-                "    #\"Removed Duplicates\""
-              ]
-            }
-          }
-        ]
-      },
-      {
         "name": "_bridge_Employment",
         "isHidden": true,
         "columns": [
@@ -122,11 +83,6 @@
             "name": "srky_Employment",
             "dataType": "string",
             "sourceColumn": "srky_Employment"
-          },
-          {
-            "name": "Value",
-            "dataType": "string",
-            "sourceColumn": "Value"
           }
         ],
         "partitions": [
@@ -135,7 +91,12 @@
             "dataView": "full",
             "source": {
               "type": "m",
-              "expression": "_bridge_Employment"
+              "expression": [
+                "let",
+                "    Source = _bridge_Employment",
+                "in",
+                "    Source"
+              ]
             }
           }
         ]
@@ -244,75 +205,8 @@
         ]
       },
       {
-        "name": "Family",
-        "columns": [
-          {
-            "name": "srky_Family",
-            "dataType": "string",
-            "sourceColumn": "srky_Family"
-          },
-          {
-            "name": "Family History",
-            "dataType": "string",
-            "sourceColumn": "Family History"
-          }
-        ],
-        "partitions": [
-          {
-            "name": "Partition",
-            "dataView": "full",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = _bridge_Family,",
-                "    #\"Removed Columns\" = Table.RemoveColumns(Source,{\"srky_Family_Quote\"}),",
-                "    #\"Duplicated Column\" = Table.DuplicateColumn(#\"Removed Columns\", \"srky_Family\", \"srky_Family - Copy\"),",
-                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Duplicated Column\",{{\"srky_Family - Copy\", \"Family History\"}}),",
-                "    #\"Removed Duplicates\" = Table.Distinct(#\"Renamed Columns\", {\"Family History\"})",
-                "in",
-                "    #\"Removed Duplicates\""
-              ]
-            }
-          }
-        ]
-      },
-      {
-        "name": "ProductInfo",
-        "columns": [
-          {
-            "name": "srky_ProductInfo",
-            "dataType": "string",
-            "sourceColumn": "srky_ProductInfo"
-          },
-          {
-            "name": "ProductInfo",
-            "dataType": "string",
-            "sourceColumn": "ProductInfo"
-          }
-        ],
-        "partitions": [
-          {
-            "name": "Partition",
-            "dataView": "full",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = _bridge_ProductInfo,",
-                "    #\"Removed Columns\" = Table.RemoveColumns(Source,{\"srky_ProductInfo_Quote\"}),",
-                "    #\"Removed Duplicates\" = Table.Distinct(#\"Removed Columns\"),",
-                "    #\"Duplicated Column\" = Table.DuplicateColumn(#\"Removed Duplicates\", \"srky_ProductInfo\", \"srky_ProductInfo - Copy\"),",
-                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Duplicated Column\",{{\"srky_ProductInfo - Copy\", \"ProductInfo\"}})",
-                "in",
-                "    #\"Renamed Columns\""
-              ]
-            }
-          }
-        ]
-      },
-      {
         "name": "_bridge_ProductInfo",
+        "isHidden": true,
         "columns": [
           {
             "name": "srky_ProductInfo_Quote",
@@ -361,17 +255,111 @@
             }
           }
         ]
+      },
+      {
+        "name": "Employment",
+        "columns": [
+          {
+            "name": "srky_Employment",
+            "dataType": "string",
+            "sourceColumn": "srky_Employment"
+          },
+          {
+            "name": "Employment Info",
+            "dataType": "string",
+            "sourceColumn": "Employment Info"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = _bridge_Employment,",
+                "    #\"Duplicated Column\" = Table.DuplicateColumn(Source, \"srky_Employment\", \"srky_Employment - Copy\"),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Duplicated Column\",{{\"srky_Employment - Copy\", \"Employment Info\"}}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Renamed Columns\", {\"Employment Info\"}),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Removed Duplicates\",{\"srky_Employment_Quote\"})",
+                "in",
+                "    #\"Removed Columns\""
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "ProductInfo",
+        "columns": [
+          {
+            "name": "srky_ProductInfo",
+            "dataType": "string",
+            "sourceColumn": "srky_ProductInfo"
+          },
+          {
+            "name": "Product Info",
+            "dataType": "string",
+            "sourceColumn": "Product Info"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = _bridge_ProductInfo,",
+                "    #\"Removed Columns\" = Table.RemoveColumns(Source,{\"srky_ProductInfo_Quote\"}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Removed Columns\"),",
+                "    #\"Duplicated Column\" = Table.DuplicateColumn(#\"Removed Duplicates\", \"srky_ProductInfo\", \"srky_ProductInfo - Copy\"),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Duplicated Column\",{{\"srky_ProductInfo - Copy\", \"Product Info\"}})",
+                "in",
+                "    #\"Renamed Columns\""
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Family",
+        "columns": [
+          {
+            "name": "srky_Family",
+            "dataType": "string",
+            "sourceColumn": "srky_Family"
+          },
+          {
+            "name": "Family",
+            "dataType": "string",
+            "sourceColumn": "Family"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = _bridge_Family,",
+                "    #\"Removed Columns\" = Table.RemoveColumns(Source,{\"srky_Family_Quote\"}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Removed Columns\"),",
+                "    #\"Duplicated Column\" = Table.DuplicateColumn(#\"Removed Duplicates\", \"srky_Family\", \"srky_Family - Copy\"),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Duplicated Column\",{{\"srky_Family - Copy\", \"Family\"}})",
+                "in",
+                "    #\"Renamed Columns\""
+              ]
+            }
+          }
+        ]
       }
     ],
     "relationships": [
-      {
-        "name": "7c0b551a-94a1-4a3a-bf2e-dae51ac7ae25",
-        "fromTable": "_bridge_Employment",
-        "fromColumn": "srky_Employment",
-        "toTable": "Employment",
-        "toColumn": "srky_Employment",
-        "crossFilteringBehavior": "bothDirections"
-      },
       {
         "name": "73c5d879-576f-4284-86e6-8e8cc622bd62",
         "fromTable": "_bridge_Employment",
@@ -386,6 +374,46 @@
         "fromColumn": "srky_personal",
         "toTable": "Personal",
         "toColumn": "srky_Personal"
+      },
+      {
+        "name": "4215ff55-df93-4edd-83a9-edc018f27679",
+        "fromTable": "_bridge_ProductInfo",
+        "fromColumn": "srky_ProductInfo_Quote",
+        "toTable": "MetricsQuotes",
+        "toColumn": "srky_ProductInfo_Quote",
+        "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "ac49929f-80a9-42d7-afd4-3c73d27be15a",
+        "fromTable": "_bridge_Family",
+        "fromColumn": "srky_Family_Quote",
+        "toTable": "MetricsQuotes",
+        "toColumn": "srky_Family_Quote",
+        "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "f4b4cc1b-d696-4b00-b62b-23b03e037a9d",
+        "fromTable": "_bridge_Employment",
+        "fromColumn": "srky_Employment",
+        "toTable": "Employment",
+        "toColumn": "srky_Employment",
+        "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "f2131376-d81f-4e86-b910-b389e58d8157",
+        "fromTable": "_bridge_ProductInfo",
+        "fromColumn": "srky_ProductInfo",
+        "toTable": "ProductInfo",
+        "toColumn": "srky_ProductInfo",
+        "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "981d10cb-abf2-46b4-813d-ecc15cd92466",
+        "fromTable": "_bridge_Family",
+        "fromColumn": "srky_Family",
+        "toTable": "Family",
+        "toColumn": "srky_Family",
+        "crossFilteringBehavior": "bothDirections"
       }
     ],
     "expressions": [
@@ -395,12 +423,12 @@
         "expression": [
           "let",
           "    Source = _bridge_Employment,",
-          "    #\"Removed Columns\" = Table.RemoveColumns(Source,{\"srky_Employment_Quote\", \"Value\"}),",
-          "    #\"Duplicated Column\" = Table.DuplicateColumn(#\"Removed Columns\", \"srky_Employment\", \"srky_Employment - Copy\"),",
+          "    #\"Duplicated Column\" = Table.DuplicateColumn(Source, \"srky_Employment\", \"srky_Employment - Copy\"),",
           "    #\"Renamed Columns\" = Table.RenameColumns(#\"Duplicated Column\",{{\"srky_Employment - Copy\", \"Employment Info\"}}),",
-          "    #\"Removed Duplicates\" = Table.Distinct(#\"Renamed Columns\", {\"Employment Info\"})",
+          "    #\"Removed Duplicates\" = Table.Distinct(#\"Renamed Columns\", {\"Employment Info\"}),",
+          "    #\"Removed Columns\" = Table.RemoveColumns(#\"Removed Duplicates\",{\"srky_Employment_Quote\"})",
           "in",
-          "    #\"Removed Duplicates\""
+          "    #\"Removed Columns\""
         ]
       },
       {
