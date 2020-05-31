@@ -18,7 +18,7 @@ steps:
     script: |
       # Write your PowerShell commands here.
       
-      Write-Host "$(Get-Date) Server: $($env:COMPUTERNAME), Working directory: $(GET-LOCATION) ";
+      Write-Host "$(Get-Date) Server: $($env:COMPUTERNAME), Working directory: $(GET-LOCATION), Agent Release Directory:$(agent.releaseDirectory) ";
       Write-Host "$(Get-Date) CollectionId: $(system.collectionId),  User domain: $($env:UserDomain)  User:$($env:UserName)";
       Write-Host "$(Get-Date) Artifact staging Directory:$(Build.ArtifactStagingDirectory)";
       Write-Host "$(Get-Date) Build Sources directory:  $(build.sourcesdirectory)";
@@ -29,6 +29,7 @@ steps:
 
 - task: SqlAzureDacpacDeployment@1
   inputs:
+    azureSubscription: 'Pay-As-You-Go(64ef997a-f1f3-4350-a98b-86f3307a3444)'
     AuthenticationType: 'server'
     ServerName: 'demojrdw.database.windows.net'
     DatabaseName: 'demojrdwdb'
