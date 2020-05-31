@@ -1,19 +1,39 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+# DW Dev pipeline
 
 trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-latest'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: PowerShell@2
+  displayName: '(Pshell):Build Info Report'
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Write your PowerShell commands here.
+      
+      Write-Host "$(Get-Date) Server: $($env:COMPUTERNAME), Working directory: $(GET-LOCATION) ";
+      Write-Host "$(Get-Date) CollectionId: $(system.collectionId),  User domain: $($env:UserDomain)  User:$($env:UserName)";
+      Write-Host "$(Get-Date) Artifact staging Directory:$(Build.ArtifactStagingDirectory)";
+      Write-Host "$(Get-Date) Build Sources directory:  $(build.sourcesdirectory)";
+      Write-Host "$(Get-Date) Build Id,Number: $(Build.BuildId), $(Build.BuildNumber)";
+      Write-Host "$(Get-Date) Binaries Folder:$(Build.BinariesDirectory), Build Definition Name:$(Build.DefinitionName), Build StagingDirectory Name:$(Build.StagingDirectory)";
+      Write-Host "$(Get-Date) Build source Version:$(Build.SourceVersion), Build Source Branch:$(Build.SourceBranch), Build Repository Name: $(Build.Repository.Name)";
+      Write-Host "$(Get-Date) $((Get-ChildItem).FullName)"
+- task: SqlAzureDacpacDeployment@1
+  inputs:
+    azureSubscription: 'Pay-As-You-Go($(AzureSubscriptionX))'
+    AuthenticationType: 'server'
+    ServerName: 'demojrdw.database.windows.net'
+    DatabaseName: 'demodwjrdb'
+    SqlUsername: '$(SQLUser)'
+    SqlPassword: '$(SQLPassword)'
+    deployType: 'DacpacTask'
+    DeploymentAction: 'Publish'
+    DacpacFile: 'RDBMS\bin\Release\Database.dacpac'
+    PublishProfile: 'RDBMS\Deployment\AzureDB.publish.xml'
+    IpDetectionMethod: 'AutoDetect'
+  displayName: 'Deploying to Azure Database'
