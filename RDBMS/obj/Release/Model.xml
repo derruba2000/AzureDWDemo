@@ -1,0 +1,4208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSchemaModel FileFormatVersion="1.2" SchemaVersion="2.4" DspName="Microsoft.Data.Tools.Schema.Sql.SqlAzureV12DatabaseSchemaProvider" CollationLcid="1033" CollationCaseSensitive="False" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+	<Header>
+		<CustomData Category="AnsiNulls">
+			<Metadata Name="AnsiNulls" Value="True" />
+		</CustomData>
+		<CustomData Category="QuotedIdentifier">
+			<Metadata Name="QuotedIdentifier" Value="True" />
+		</CustomData>
+		<CustomData Category="CompatibilityMode">
+			<Metadata Name="CompatibilityMode" Value="150" />
+		</CustomData>
+		<CustomData Category="Reference" Type="Assembly">
+			<Metadata Name="LogicalName" Value="Database.dll" />
+			<Metadata Name="FileName" Value="C:\SRC\DWDEMOPROJ\RDBMS\OBJ\RELEASE\DATABASE.DLL" />
+			<Metadata Name="AssemblyName" Value="Database" />
+			<Metadata Name="PermissionSet" Value="SAFE" />
+			<Metadata Name="Owner" Value="" />
+			<Metadata Name="GenerateSqlClrDdl" Value="True" />
+			<Metadata Name="IsVisible" Value="True" />
+			<Metadata Name="IsModelAware" Value="True" />
+			<Metadata Name="SkipCreationIfEmpty" Value="True" />
+			<Metadata Name="AssemblySymbolsName" Value="C:\Src\DWdemoProj\RDBMS\obj\Release\Database.pdb" />
+		</CustomData>
+		<CustomData Category="SqlCmdVariables" Type="SqlCmdVariable" />
+	</Header>
+	<Model>
+		<Element Type="SqlDatabaseOptions">
+			<Property Name="Collation" Value="SQL_Latin1_General_CP1_CI_AS" />
+			<Property Name="IsAnsiNullDefaultOn" Value="True" />
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Property Name="IsAnsiWarningsOn" Value="True" />
+			<Property Name="IsArithAbortOn" Value="True" />
+			<Property Name="IsConcatNullYieldsNullOn" Value="True" />
+			<Property Name="IsTornPageProtectionOn" Value="False" />
+			<Property Name="RecoveryMode" Value="1" />
+			<Property Name="IsFullTextEnabled" Value="True" />
+			<Property Name="PageVerifyMode" Value="3" />
+			<Property Name="DefaultLanguage" Value="" />
+			<Property Name="DefaultFullTextLanguage" Value="" />
+		</Element>
+		<Element Type="SqlDefaultConstraint">
+			<Property Name="DefaultExpressionScript">
+				<Value><![CDATA[GETDATE()]]></Value>
+			</Property>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[fact_Quotes]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForColumn">
+				<Entry>
+					<References Name="[dbo].[fact_Quotes].[InsertedAt]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="3" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[fact_Quotes].[tableId]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[fact_Quotes]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="4" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[dim_Employment].[srky_Employment]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[dim_Employment]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="5" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[dim_Family].[srky_Family]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[dim_Family]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="6" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[dim_Personal].[srky_Personal]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[dim_Personal]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="7" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[dim_ProductInfo].[srky_ProductInfo]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[dim_ProductInfo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="8" />
+		</Element>
+		<Element Type="SqlTable" Name="[dbo].[dim_Employment]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_Employment].[srky_Employment]">
+						<Property Name="IsNullable" Value="False" />
+						<Property Name="IsIdentity" Value="True" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+						<AttachedAnnotation Disambiguator="5" />
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_Employment].[Employment_Info_1]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Scale" Value="2" />
+									<Property Name="Precision" Value="10" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[numeric]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_Employment].[Employment_Info_2]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_Employment].[Employment_Info_3]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_Employment].[Employment_Info_4]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_Employment].[Employment_Info_5]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_Employment].[Employment_Info_6]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_Employment].[HASH_EmploymentInfo]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="32" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlTable" Name="[dbo].[dim_Family]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_Family].[srky_Family]">
+						<Property Name="IsNullable" Value="False" />
+						<Property Name="IsIdentity" Value="True" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+						<AttachedAnnotation Disambiguator="6" />
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_Family].[Family_Hist_1]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_Family].[Family_Hist_2]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Scale" Value="2" />
+									<Property Name="Precision" Value="10" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[numeric]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_Family].[Family_Hist_3]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Scale" Value="2" />
+									<Property Name="Precision" Value="10" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[numeric]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_Family].[Family_Hist_4]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Scale" Value="2" />
+									<Property Name="Precision" Value="10" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[numeric]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_Family].[Family_Hist_5]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Scale" Value="2" />
+									<Property Name="Precision" Value="10" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[numeric]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_Family].[HASH_Family_Hist]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="32" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlTable" Name="[dbo].[dim_Personal]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_Personal].[srky_Personal]">
+						<Property Name="IsNullable" Value="False" />
+						<Property Name="IsIdentity" Value="True" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+						<AttachedAnnotation Disambiguator="7" />
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_Personal].[InsAge]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Scale" Value="2" />
+									<Property Name="Precision" Value="10" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[numeric]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_Personal].[Ht]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Scale" Value="2" />
+									<Property Name="Precision" Value="10" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[numeric]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_Personal].[Wt]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Scale" Value="2" />
+									<Property Name="Precision" Value="10" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[numeric]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_Personal].[BMI]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Scale" Value="2" />
+									<Property Name="Precision" Value="10" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[numeric]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_Personal].[HASH_Personal]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="32" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlTable" Name="[dbo].[dim_ProductInfo]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_ProductInfo].[srky_ProductInfo]">
+						<Property Name="IsNullable" Value="False" />
+						<Property Name="IsIdentity" Value="True" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+						<AttachedAnnotation Disambiguator="8" />
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_ProductInfo].[Product_Info_1]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_ProductInfo].[Product_Info_2]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_ProductInfo].[Product_Info_3]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_ProductInfo].[Product_Info_4]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Scale" Value="2" />
+									<Property Name="Precision" Value="10" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[numeric]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_ProductInfo].[Product_Info_5]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_ProductInfo].[Product_Info_6]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_ProductInfo].[Product_Info_7]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[dim_ProductInfo].[HASH_ProductInfo]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="32" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlTable" Name="[dbo].[fact_Quotes]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_Quotes].[tableId]">
+						<Property Name="IsNullable" Value="False" />
+						<Property Name="IsIdentity" Value="True" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+						<AttachedAnnotation Disambiguator="4" />
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_Quotes].[Id]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_Quotes].[HASH_InsuredInfo]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="32" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_Quotes].[HASH_InsuranceHistory]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="32" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_Quotes].[HASH_Medical_Hist]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="32" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_Quotes].[Response]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_Quotes].[City]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_Quotes].[QuoteDate]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_Quotes].[ProcessId]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="38" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_Quotes].[ExecutionId]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bigint]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_Quotes].[srky_Employment]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_Quotes].[srky_Family]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_Quotes].[srky_Personal]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_Quotes].[srky_ProductInfo]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_Quotes].[InsertedAt]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+						<AttachedAnnotation Disambiguator="3" />
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_Quotes].[ToDate]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="9" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="10" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="11" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="12" />
+		</Element>
+		<Element Type="SqlUniqueConstraint" Name="[dbo].[fact_Quotes_UniqueKeyConstraint]">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[fact_Quotes].[Id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[fact_Quotes].[ToDate]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[fact_Quotes]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlTable" Name="[dbo].[fact_QuotesNewData]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_QuotesNewData].[Id]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_QuotesNewData].[HASH_InsuredInfo]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="32" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_QuotesNewData].[HASH_InsuranceHistory]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="32" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_QuotesNewData].[HASH_Medical_Hist]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="32" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_QuotesNewData].[Response]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_QuotesNewData].[City]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_QuotesNewData].[QuoteDate]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_QuotesNewData].[ProcessId]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="38" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_QuotesNewData].[ExecutionId]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bigint]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_QuotesNewData].[srky_Employment]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_QuotesNewData].[srky_Family]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_QuotesNewData].[srky_Personal]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fact_QuotesNewData].[srky_ProductInfo]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_fact_Quotes_dimEmployment]">
+			<Relationship Name="Columns">
+				<Entry>
+					<References Name="[dbo].[fact_Quotes].[srky_Employment]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[fact_Quotes]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignColumns">
+				<Entry>
+					<References Name="[dbo].[dim_Employment].[srky_Employment]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignTable">
+				<Entry>
+					<References Name="[dbo].[dim_Employment]" />
+				</Entry>
+			</Relationship>
+			<AttachedAnnotation Disambiguator="12" />
+		</Element>
+		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_fact_Quotes_dimFamily]">
+			<Relationship Name="Columns">
+				<Entry>
+					<References Name="[dbo].[fact_Quotes].[srky_Family]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[fact_Quotes]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignColumns">
+				<Entry>
+					<References Name="[dbo].[dim_Family].[srky_Family]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignTable">
+				<Entry>
+					<References Name="[dbo].[dim_Family]" />
+				</Entry>
+			</Relationship>
+			<AttachedAnnotation Disambiguator="9" />
+		</Element>
+		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_fact_Quotes_dimPersonal]">
+			<Relationship Name="Columns">
+				<Entry>
+					<References Name="[dbo].[fact_Quotes].[srky_Personal]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[fact_Quotes]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignColumns">
+				<Entry>
+					<References Name="[dbo].[dim_Personal].[srky_Personal]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignTable">
+				<Entry>
+					<References Name="[dbo].[dim_Personal]" />
+				</Entry>
+			</Relationship>
+			<AttachedAnnotation Disambiguator="10" />
+		</Element>
+		<Element Type="SqlForeignKeyConstraint" Name="[dbo].[FK_fact_Quotes_dimProductInfo]">
+			<Relationship Name="Columns">
+				<Entry>
+					<References Name="[dbo].[fact_Quotes].[srky_ProductInfo]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[fact_Quotes]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignColumns">
+				<Entry>
+					<References Name="[dbo].[dim_ProductInfo].[srky_ProductInfo]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignTable">
+				<Entry>
+					<References Name="[dbo].[dim_ProductInfo]" />
+				</Entry>
+			</Relationship>
+			<AttachedAnnotation Disambiguator="11" />
+		</Element>
+		<Element Type="SqlView" Name="[dbo].[vw_fact_Quotes]">
+			<Property Name="QueryScript">
+				<Value><![CDATA[ /****** Script for SelectTopNRows command from SSMS  ******/ 
+  SELECT [id], 
+         [hash_insuredinfo], 
+         [hash_insurancehistory], 
+         [hash_medical_hist], 
+         [response], 
+         [city], 
+         [quotedate], 
+         [processid], 
+         [executionid], 
+         [srky_employment], 
+         [srky_family], 
+         [srky_personal], 
+         [srky_productinfo], 
+         CONVERT(VARCHAR(32), Hashbytes('MD5', Concat([hash_insuredinfo], ':', 
+                                               [hash_insurancehistory], ':', 
+                                               [hash_medical_hist], ':', 
+                                                                    [response], 
+                                               ':', 
+                                               [srky_employment], ':', 
+                                               [srky_family], 
+                                               ':' 
+                                               , [srky_personal], ':', 
+                                               [srky_productinfo] 
+                                               )), 2) AS HASH_fact 
+  FROM   [dbo].[fact_quotes] 
+  WHERE  todate IS NULL]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes].[id]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[fact_Quotes].[Id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes].[hash_insuredinfo]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[fact_Quotes].[HASH_InsuredInfo]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes].[hash_insurancehistory]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[fact_Quotes].[HASH_InsuranceHistory]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes].[hash_medical_hist]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[fact_Quotes].[HASH_Medical_Hist]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes].[response]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[fact_Quotes].[Response]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes].[city]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[fact_Quotes].[City]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes].[quotedate]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[fact_Quotes].[QuoteDate]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes].[processid]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[fact_Quotes].[ProcessId]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes].[executionid]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[fact_Quotes].[ExecutionId]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes].[srky_employment]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[fact_Quotes].[srky_Employment]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes].[srky_family]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[fact_Quotes].[srky_Family]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes].[srky_personal]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[fact_Quotes].[srky_Personal]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes].[srky_productinfo]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[fact_Quotes].[srky_ProductInfo]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes].[HASH_fact]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="QueryDependencies">
+				<Entry>
+					<References Name="[dbo].[fact_Quotes]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fact_Quotes].[Id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fact_Quotes].[HASH_InsuredInfo]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fact_Quotes].[HASH_InsuranceHistory]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fact_Quotes].[HASH_Medical_Hist]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fact_Quotes].[Response]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fact_Quotes].[City]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fact_Quotes].[QuoteDate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fact_Quotes].[ProcessId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fact_Quotes].[ExecutionId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fact_Quotes].[srky_Employment]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fact_Quotes].[srky_Family]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fact_Quotes].[srky_Personal]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fact_Quotes].[srky_ProductInfo]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[varchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fact_Quotes].[ToDate]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="1275" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE VIEW [dbo].[vw_fact_Quotes] &#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlView" Name="[dbo].[vw_fact_Quotes_NewData]">
+			<Property Name="QueryScript">
+				<Value><![CDATA[ 
+  SELECT [id], 
+         [hash_insuredinfo], 
+         [hash_insurancehistory], 
+         [hash_medical_hist], 
+         [response], 
+         [city], 
+         [quotedate], 
+         [processid], 
+         [executionid], 
+         [srky_employment], 
+         [srky_family], 
+         [srky_personal], 
+         [srky_productinfo], 
+         CONVERT(VARCHAR(32), Hashbytes('MD5', Concat([hash_insuredinfo], ':', 
+                                               [hash_insurancehistory], ':', 
+                                               [hash_medical_hist], ':', 
+                                                                    [response], 
+                                               ':', 
+                                               [srky_employment], ':', 
+                                               [srky_family], 
+                                               ':' 
+                                               , [srky_personal], ':', 
+                                               [srky_productinfo] 
+                                               )), 2) AS HASH_fact 
+  FROM   [dbo].[fact_quotesnewdata]]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes_NewData].[id]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[fact_QuotesNewData].[Id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes_NewData].[hash_insuredinfo]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[fact_QuotesNewData].[HASH_InsuredInfo]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes_NewData].[hash_insurancehistory]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[fact_QuotesNewData].[HASH_InsuranceHistory]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes_NewData].[hash_medical_hist]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[fact_QuotesNewData].[HASH_Medical_Hist]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes_NewData].[response]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[fact_QuotesNewData].[Response]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes_NewData].[city]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[fact_QuotesNewData].[City]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes_NewData].[quotedate]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[fact_QuotesNewData].[QuoteDate]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes_NewData].[processid]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[fact_QuotesNewData].[ProcessId]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes_NewData].[executionid]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[fact_QuotesNewData].[ExecutionId]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes_NewData].[srky_employment]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[fact_QuotesNewData].[srky_Employment]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes_NewData].[srky_family]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[fact_QuotesNewData].[srky_Family]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes_NewData].[srky_personal]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[fact_QuotesNewData].[srky_Personal]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes_NewData].[srky_productinfo]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[fact_QuotesNewData].[srky_ProductInfo]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[vw_fact_Quotes_NewData].[HASH_fact]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="QueryDependencies">
+				<Entry>
+					<References Name="[dbo].[fact_QuotesNewData]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fact_QuotesNewData].[Id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fact_QuotesNewData].[HASH_InsuredInfo]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fact_QuotesNewData].[HASH_InsuranceHistory]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fact_QuotesNewData].[HASH_Medical_Hist]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fact_QuotesNewData].[Response]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fact_QuotesNewData].[City]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fact_QuotesNewData].[QuoteDate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fact_QuotesNewData].[ProcessId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fact_QuotesNewData].[ExecutionId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fact_QuotesNewData].[srky_Employment]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fact_QuotesNewData].[srky_Family]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fact_QuotesNewData].[srky_Personal]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fact_QuotesNewData].[srky_ProductInfo]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[varchar]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="1203" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE VIEW [dbo].[vw_fact_Quotes_NewData] &#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlLogin" Name="[ssisSVC]">
+			<Property Name="Password" Value="Z{zpKYxAxu4dge|6Lud{~&gt;afmsFT7_&amp;#$!~&lt;Hwbhzgdj{avh" />
+			<Annotation Type="GloballyScoped" />
+		</Element>
+		<Element Type="SqlSchema" Name="[staging]">
+			<Relationship Name="Authorizer">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlTable" Name="[staging].[InsuranceQuotes]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Id]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Product_Info_1]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Product_Info_2]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Product_Info_3]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Product_Info_4]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Product_Info_5]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Product_Info_6]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Product_Info_7]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Ins_Age]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Ht]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Wt]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[BMI]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Employment_Info_1]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Employment_Info_2]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Employment_Info_3]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Employment_Info_4]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Employment_Info_5]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Employment_Info_6]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[InsuredInfo_1]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[InsuredInfo_2]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[InsuredInfo_3]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[InsuredInfo_4]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[InsuredInfo_5]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[InsuredInfo_6]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[InsuredInfo_7]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Insurance_History_1]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Insurance_History_2]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Insurance_History_3]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Insurance_History_4]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Insurance_History_5]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Insurance_History_7]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Insurance_History_8]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Insurance_History_9]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Family_Hist_1]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Family_Hist_2]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Family_Hist_3]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Family_Hist_4]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Family_Hist_5]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_1]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_2]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_3]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_4]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_5]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_6]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_7]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_8]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_9]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_10]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_11]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_12]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_13]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_14]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_15]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_16]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_17]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_18]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_19]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_20]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_21]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_22]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_23]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_24]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_25]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_26]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_27]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_28]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_29]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_30]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_31]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_32]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_33]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_34]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_35]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_36]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_37]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_38]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_39]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_40]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Medical_History_41]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[Response]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[City]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[QuoteDate]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[ProcessId]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="38" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[staging].[InsuranceQuotes].[ExecutionId]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bigint]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References Name="[staging]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlView" Name="[staging].[vw_InsuranceQuotes]">
+			<Property Name="QueryScript">
+				<Value><![CDATA[ /****** Script for SelectTopNRows command from SSMS  ******/
+SELECT  CAST([Id] AS INT) AS [Id]
+      ,[Product_Info_1]
+      ,[Product_Info_2]
+      ,[Product_Info_3]
+      ,CAST([Product_Info_4] AS DECIMAL(10,2)) AS [Product_Info_4]
+      ,[Product_Info_5]
+      ,[Product_Info_6]
+      ,[Product_Info_7]
+	  ,CONVERT(VARCHAR(32),HASHBYTES('MD5',CONCAT([Product_Info_1],':',[Product_Info_2], ':',  [Product_Info_3], ':', [Product_Info_4], ':', [Product_Info_5],':',[Product_Info_6],':',[Product_Info_7])),2) AS HASH_ProductInfo
+      ,CAST([Ins_Age] AS DECIMAL(10,2)) AS [InsAge]
+      ,CAST([Ht] AS DECIMAL(10,2)) AS [Ht]
+      ,CAST([Wt] AS DECIMAL(10,2))  AS [Wt]
+      ,CAST([BMI] AS DECIMAL(10,2))  AS [BMI]
+	  ,CONVERT(VARCHAR(32),HASHBYTES('MD5',CONCAT(
+				CAST([Ins_Age] AS DECIMAL(10,2)),':',
+				CAST([Ht] AS DECIMAL(10,2)), ':' ,
+				CAST([Wt] AS DECIMAL(10,2)), ':', 
+				CAST([BMI] AS DECIMAL(10,2)) )),2) AS HASH_Personal
+      ,TRY_CAST([Employment_Info_1]  AS DECIMAL(10,2)) AS [Employment_Info_1]
+      ,[Employment_Info_2]
+      ,[Employment_Info_3]
+      ,[Employment_Info_4]
+      ,[Employment_Info_5]
+      ,[Employment_Info_6]
+	  ,CONVERT(VARCHAR(32),HASHBYTES('MD5',CONCAT(TRY_CAST([Employment_Info_1]  AS DECIMAL(10,2)),':',[Employment_Info_2], ':',  [Employment_Info_3], ':', [Employment_Info_4], ':', [Employment_Info_5],':',[Employment_Info_6])),2) AS HASH_EmploymentInfo
+      ,[InsuredInfo_1]
+      ,[InsuredInfo_2]
+      ,[InsuredInfo_3]
+      ,[InsuredInfo_4]
+      ,[InsuredInfo_5]
+      ,[InsuredInfo_6]
+      ,[InsuredInfo_7]
+	  ,CONVERT(VARCHAR(32),HASHBYTES('MD5',CONCAT([InsuredInfo_1],':',[InsuredInfo_2], ':',  [InsuredInfo_3], ':', [InsuredInfo_4], ':', [InsuredInfo_5],':',[InsuredInfo_6],':',[InsuredInfo_7])),2) AS HASH_InsuredInfo
+      ,[Insurance_History_1]
+      ,[Insurance_History_2]
+      ,[Insurance_History_3]
+      ,[Insurance_History_4]
+      ,COALESCE(TRY_CAST([Insurance_History_5] AS DECIMAL(10,3)),0) AS [Insurance_History_5]
+	  ,[Insurance_History_7]
+      ,[Insurance_History_8]
+      ,[Insurance_History_9]
+	  ,CONVERT(VARCHAR(32),HASHBYTES('MD5',CONCAT([Insurance_History_1],':',[Insurance_History_2],':',[Insurance_History_7],':',[Insurance_History_8],':',[Insurance_History_9], ':',  [Insurance_History_3], ':', [Insurance_History_4], ':', COALESCE(TRY_CAST([Insurance_History_5] AS DECIMAL(10,3)),0))),2) AS HASH_InsuranceHistory
+      ,[Family_Hist_1]
+      ,TRY_CAST([Family_Hist_2] AS DECIMAL(10,2)) AS [Family_Hist_2]
+      ,TRY_CAST([Family_Hist_3] AS DECIMAL(10,2)) AS [Family_Hist_3]
+      ,TRY_CAST([Family_Hist_4] AS DECIMAL(10,2)) AS [Family_Hist_4]
+      ,TRY_CAST([Family_Hist_5] AS DECIMAL(10,2)) AS [Family_Hist_5]
+
+
+	  ,
+	  CONVERT(VARCHAR(32),HASHBYTES('MD5',CONCAT(
+	  [Family_Hist_1], ':'
+      ,TRY_CAST([Family_Hist_2] AS DECIMAL(10,2)) , ':'
+      ,TRY_CAST([Family_Hist_3] AS DECIMAL(10,2)) , ':'
+      ,TRY_CAST([Family_Hist_4] AS DECIMAL(10,2)), ':'
+      ,TRY_CAST([Family_Hist_5] AS DECIMAL(10,2)) 
+	   )),2) AS HASH_Family_Hist
+      ,[Medical_History_1]
+      ,[Medical_History_2]
+      ,[Medical_History_3]
+      ,[Medical_History_4]
+      ,[Medical_History_5]
+      ,[Medical_History_6]
+      ,[Medical_History_7]
+      ,[Medical_History_8]
+      ,[Medical_History_9]
+      ,[Medical_History_10]
+      ,[Medical_History_11]
+      ,[Medical_History_12]
+      ,[Medical_History_13]
+      ,[Medical_History_14]
+      ,[Medical_History_15]
+      ,[Medical_History_16]
+      ,[Medical_History_17]
+      ,[Medical_History_18]
+      ,[Medical_History_19]
+      ,[Medical_History_20]
+      ,[Medical_History_21]
+      ,[Medical_History_22]
+      ,[Medical_History_23]
+      ,[Medical_History_24]
+      ,[Medical_History_25]
+      ,[Medical_History_26]
+      ,[Medical_History_27]
+      ,[Medical_History_28]
+      ,[Medical_History_29]
+      ,[Medical_History_30]
+      ,[Medical_History_31]
+      ,[Medical_History_32]
+      ,[Medical_History_33]
+      ,[Medical_History_34]
+      ,[Medical_History_35]
+      ,[Medical_History_36]
+      ,[Medical_History_37]
+      ,[Medical_History_38]
+      ,[Medical_History_39]
+      ,[Medical_History_40]
+      ,[Medical_History_41]
+	  , CONVERT(VARCHAR(32),HASHBYTES('MD5',CONCAT(
+	   [Medical_History_1], ':'
+      ,[Medical_History_2], ':'
+      ,[Medical_History_3], ':'
+      ,[Medical_History_4], ':'
+      ,[Medical_History_5], ':'
+      ,[Medical_History_6], ':'
+      ,[Medical_History_7], ':'
+      ,[Medical_History_8], ':'
+      ,[Medical_History_9], ':'
+      ,[Medical_History_10], ':'
+      ,[Medical_History_11], ':'
+      ,[Medical_History_12], ':'
+      ,[Medical_History_13], ':'
+      ,[Medical_History_14], ':'
+      ,[Medical_History_15], ':'
+      ,[Medical_History_16], ':'
+      ,[Medical_History_17], ':'
+      ,[Medical_History_18], ':'
+      ,[Medical_History_19], ':'
+      ,[Medical_History_20], ':'
+      ,[Medical_History_21], ':'
+      ,[Medical_History_22], ':'
+      ,[Medical_History_23], ':'
+      ,[Medical_History_24], ':'
+      ,[Medical_History_25], ':'
+      ,[Medical_History_26], ':'
+      ,[Medical_History_27], ':'
+      ,[Medical_History_28], ':'
+      ,[Medical_History_29], ':'
+      ,[Medical_History_30], ':'
+      ,[Medical_History_31], ':'
+      ,[Medical_History_32], ':'
+      ,[Medical_History_33], ':'
+      ,[Medical_History_34], ':'
+      ,[Medical_History_35], ':'
+      ,[Medical_History_36], ':'
+      ,[Medical_History_37], ':'
+      ,[Medical_History_38], ':'
+      ,[Medical_History_39], ':'
+      ,[Medical_History_40], ':'
+      ,[Medical_History_41]
+	   )),2) AS HASH_Medical_Hist
+      ,[Response]
+      ,[City]
+      ,[QuoteDate]
+      ,[ProcessId]
+      ,[ExecutionId]
+  FROM [staging].[InsuranceQuotes]]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Id]" />
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Product_Info_1]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Product_Info_1]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Product_Info_2]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Product_Info_2]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Product_Info_3]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Product_Info_3]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Product_Info_4]" />
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Product_Info_5]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Product_Info_5]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Product_Info_6]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Product_Info_6]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Product_Info_7]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Product_Info_7]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[HASH_ProductInfo]" />
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[InsAge]" />
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Ht]" />
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Wt]" />
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[BMI]" />
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[HASH_Personal]" />
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Employment_Info_1]" />
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Employment_Info_2]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Employment_Info_2]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Employment_Info_3]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Employment_Info_3]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Employment_Info_4]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Employment_Info_4]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Employment_Info_5]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Employment_Info_5]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Employment_Info_6]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Employment_Info_6]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[HASH_EmploymentInfo]" />
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[InsuredInfo_1]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[InsuredInfo_1]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[InsuredInfo_2]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[InsuredInfo_2]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[InsuredInfo_3]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[InsuredInfo_3]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[InsuredInfo_4]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[InsuredInfo_4]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[InsuredInfo_5]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[InsuredInfo_5]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[InsuredInfo_6]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[InsuredInfo_6]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[InsuredInfo_7]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[InsuredInfo_7]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[HASH_InsuredInfo]" />
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Insurance_History_1]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Insurance_History_1]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Insurance_History_2]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Insurance_History_2]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Insurance_History_3]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Insurance_History_3]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Insurance_History_4]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Insurance_History_4]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Insurance_History_5]" />
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Insurance_History_7]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Insurance_History_7]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Insurance_History_8]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Insurance_History_8]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Insurance_History_9]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Insurance_History_9]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[HASH_InsuranceHistory]" />
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Family_Hist_1]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Family_Hist_1]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Family_Hist_2]" />
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Family_Hist_3]" />
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Family_Hist_4]" />
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Family_Hist_5]" />
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[HASH_Family_Hist]" />
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_1]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_1]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_2]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_2]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_3]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_3]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_4]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_4]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_5]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_5]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_6]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_6]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_7]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_7]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_8]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_8]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_9]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_9]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_10]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_10]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_11]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_11]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_12]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_12]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_13]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_13]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_14]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_14]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_15]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_15]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_16]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_16]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_17]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_17]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_18]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_18]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_19]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_19]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_20]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_20]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_21]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_21]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_22]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_22]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_23]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_23]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_24]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_24]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_25]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_25]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_26]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_26]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_27]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_27]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_28]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_28]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_29]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_29]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_30]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_30]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_31]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_31]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_32]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_32]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_33]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_33]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_34]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_34]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_35]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_35]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_36]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_36]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_37]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_37]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_38]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_38]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_39]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_39]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_40]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_40]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Medical_History_41]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Medical_History_41]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[HASH_Medical_Hist]" />
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[Response]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[Response]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[City]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[City]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[QuoteDate]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[QuoteDate]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[ProcessId]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[ProcessId]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[staging].[vw_InsuranceQuotes].[ExecutionId]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[staging].[InsuranceQuotes].[ExecutionId]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="QueryDependencies">
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Id]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Product_Info_1]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Product_Info_2]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Product_Info_3]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[decimal]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Product_Info_4]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Product_Info_5]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Product_Info_6]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Product_Info_7]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[varchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Ins_Age]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Ht]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Wt]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[BMI]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Employment_Info_1]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Employment_Info_2]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Employment_Info_3]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Employment_Info_4]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Employment_Info_5]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Employment_Info_6]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[InsuredInfo_1]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[InsuredInfo_2]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[InsuredInfo_3]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[InsuredInfo_4]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[InsuredInfo_5]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[InsuredInfo_6]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[InsuredInfo_7]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Insurance_History_1]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Insurance_History_2]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Insurance_History_3]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Insurance_History_4]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Insurance_History_5]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Insurance_History_7]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Insurance_History_8]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Insurance_History_9]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Family_Hist_1]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Family_Hist_2]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Family_Hist_3]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Family_Hist_4]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Family_Hist_5]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_1]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_2]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_3]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_4]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_5]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_6]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_7]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_8]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_9]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_10]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_11]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_12]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_13]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_14]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_15]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_16]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_17]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_18]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_19]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_20]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_21]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_22]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_23]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_24]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_25]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_26]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_27]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_28]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_29]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_30]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_31]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_32]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_33]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_34]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_35]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_36]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_37]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_38]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_39]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_40]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Medical_History_41]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[Response]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[City]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[QuoteDate]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[ProcessId]" />
+				</Entry>
+				<Entry>
+					<References Name="[staging].[InsuranceQuotes].[ExecutionId]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References Name="[staging]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="5896" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE VIEW [staging].[vw_InsuranceQuotes]&#xD;&#xA;&#x9;AS" />
+			</Annotation>
+		</Element>
+	</Model>
+</DataSchemaModel>
