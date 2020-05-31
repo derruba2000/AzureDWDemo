@@ -1,0 +1,18 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [dbo].[FK_fact_Quotes_dimEmployment] (Foreign Key)
+       [dbo].[FK_fact_Quotes_dimFamily] (Foreign Key)
+       [dbo].[FK_fact_Quotes_dimPersonal] (Foreign Key)
+       [dbo].[FK_fact_Quotes_dimProductInfo] (Foreign Key)
+
+** Supporting actions
