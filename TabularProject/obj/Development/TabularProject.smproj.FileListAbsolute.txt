@@ -1,0 +1,7 @@
+C:\Src\AzureDWDemo\TabularProject\bin\Model.asdatabase
+C:\Src\AzureDWDemo\TabularProject\bin\Model.deploymenttargets
+C:\Src\AzureDWDemo\TabularProject\bin\Model.deploymentoptions
+C:\Src\AzureDWDemo\TabularProject\obj\Development\TabularProject.smproj.CoreCompileInputs.cache
+C:\Src\AzureDWDemo\TabularProject\obj\Development\Model.asdatabase
+C:\Src\AzureDWDemo\TabularProject\obj\Development\Model.deploymentoptions
+C:\Src\AzureDWDemo\TabularProject\obj\Development\Model.deploymenttargets
