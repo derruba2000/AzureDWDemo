@@ -3,3 +3,12 @@ C:\Src\AzureDWDemo\Database\obj\Debug\Database.dll
 C:\Src\AzureDWDemo\Database\obj\Debug\Database.pdb
 C:\Src\AzureDWDemo\Database\bin\Debug\Database.dll
 C:\Src\AzureDWDemo\Database\bin\Debug\Database.pdb
+C:\Src\DWdemoProj\RDBMS\bin\Debug\Database.dacpac
+C:\Src\DWdemoProj\RDBMS\bin\Debug\Database.dll
+C:\Src\DWdemoProj\RDBMS\bin\Debug\Database.pdb
+C:\Src\DWdemoProj\RDBMS\obj\Debug\Model.xml
+C:\Src\DWdemoProj\RDBMS\obj\Debug\refactor.xml
+C:\Src\DWdemoProj\RDBMS\obj\Debug\postdeploy.sql
+C:\Src\DWdemoProj\RDBMS\obj\Debug\predeploy.sql
+C:\Src\DWdemoProj\RDBMS\obj\Debug\Database.dll
+C:\Src\DWdemoProj\RDBMS\obj\Debug\Database.pdb
