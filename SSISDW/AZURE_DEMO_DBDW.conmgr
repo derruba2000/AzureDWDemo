@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="AZURE_DEMO_DBDW"
+  DTS:DTSID="{5FC58280-8424-4B4D-94EC-E61D02856B9E}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=demojrdw.database.windows.net;User ID=jrzeus;Initial Catalog=demodwjrdb;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAcnCjW3bmi0K4XSsD3mVagwAAAAACAAAAAAAQZgAAAAEAACAAAABBBhOiI6CIktessKE+c+YM1YSQM4UQ20fDQgW3lPIg3wAAAAAOgAAAAAIAACAAAACRIuwLJmT/wkdZxotcc2nztaIlNbgDWRlAxGI5+4MCtIAAAAC7OX4AVDR4Hg5msPssdXlAbDuaBGlEZoDgajYFdwd7UMUwDa6I2G+1XHIT5wfspAdDtq5Fruu1nM+K7ckgY6uBGjz5Ef5rfNPppBl7+7tswjy1V/Ql040tyiaqIAocDClVo07eNwjaLSJCk0mqYPRelYQHYkxIn2MRigwmeY09lUAAAADnvIuHA88AIgAw9irOwrsDV5egZ9xFs8cvLbHWEaAUV7Ub6fJlxLImNFZl9ohbupsrPlHh81EMPlcPUXU7wCZW</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="LOCAL_DEMO_DBDW"
+  DTS:DTSID="{0A7AFAAE-731F-4592-9CF6-C30D0C59BA08}"
+  DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="ServerName">@[$Project::parDEMO_DBDW_ServerName]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=localhost;User ID=ssisSVC;Initial Catalog=demodwjrdb;Provider=SQLNCLI11.1;Persist Security Info=True;database=demodwjrdb;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAcnCjW3bmi0K4XSsD3mVagwAAAAACAAAAAAAQZgAAAAEAACAAAAAM2mhge2aGGNwqkjgn6YbDod5zOoLvGX45XjvAzNcb/AAAAAAOgAAAAAIAACAAAAAhDSOmvDUu0SRxvDt1lPIaHCM4qOs2AkdHtmFm+RIj2aAAAAClsbJ62bvOrk3jwDIpzI1242n5PkiaSdptFoSB4QIrbftreq0Wup7AzBHFEbfyDshULB7dxJ4B0bLMvPbyz8YgllB6jmyAhkLyMmSH0yF07W9Io0qYdifGIIN8EiW+4jqkHwikuf57qQ6+wBWpGhTjhNY7uezGmyRke4GRD2XS/7fbA3cVcYpwTRnU7R/XaNiO445j/1/6kJXqJAj1+xaZQAAAAHrcDtlEJiOgRgaWPwKfLJchqNWyiHPezTzTtD+gigvqM4sxHTruPqHQnhuQToV0FE0OZjX8U9/BBAY9urNM348=</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

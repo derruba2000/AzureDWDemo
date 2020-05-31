@@ -1,0 +1,1685 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/30/2020 10:56:34 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-L42LOBS3"
+  DTS:CreatorName="LAPTOP-L42LOBS3\corre"
+  DTS:DTSID="{C9EFA6CD-DFA3-483C-8AE9-A9169161F5A5}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.121"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="tmp_CopytoAzureHousePrice"
+  DTS:PackageType="5"
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{0B1DDF72-7C88-4211-882F-8296EA74EBF6}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load to Azure BLOB"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B6928C77-CBFA-4727-A9DD-9FE3E810455D}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load to Azure BLOB"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load to Azure BLOB\Azure Blob Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="© Microsoft Corporation; All Rights Reserved;"
+              description="Loads data into a blob in Azure Storage. The supported file formats are: Text and Avro. To work with Azure Data Lake Storage Gen2, use Flexible File Destination with Azure Storage Connection Manager instead."
+              name="Azure Blob Destination"
+              validateExternalMetadata="False">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The name of blob container"
+                  expressionType="Notify"
+                  name="Blob Container">demojrctnr</property>
+                <property
+                  dataType="System.String"
+                  description="The full name of blob"
+                  expressionType="Notify"
+                  name="Blob Name">HousePRicingData.csv</property>
+                <property
+                  dataType="System.Int32"
+                  description="The format of blob file"
+                  name="Blob Format"
+                  typeConverter="Microsoft.SqlServer.IntegrationService.CloudComponents.Utilities.AzBlobFormatEnumStringConverter">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Compress File"
+                  name="Compress File">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="The compression type"
+                  name="Compression Type"
+                  typeConverter="Microsoft.SqlServer.IntegrationService.CloudComponents.Utilities.AzCompressionTypeEnumStringConverter">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The compression level"
+                  name="Compression Level"
+                  typeConverter="Microsoft.SqlServer.IntegrationService.CloudComponents.Utilities.AzCompressionLevelEnumStringConverter">0</property>
+                <property
+                  dataType="System.String"
+                  description="The character used to delimit columns in text file"
+                  name="Column Delimiter">,</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Column names in the first data row"
+                  name="First Row as Column Names">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">AzBlobDest</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load to Azure BLOB\Azure Blob Destination.Connections[Azure Storage]"
+                  connectionManagerID="{4B334CD0-FDE8-413F-A673-3660A26EA6C1}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Azure BLOB]"
+                  description="Connection Manager for Azure Storage"
+                  name="Azure Storage" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input]"
+                  hasSideEffects="true"
+                  name="Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].Columns[CRIM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CRIM"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[CRIM]"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[CRIM]" />
+                    <inputColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].Columns[ZN]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="ZN"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[ZN]"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[ZN]" />
+                    <inputColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].Columns[INDUS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="INDUS"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[INDUS]"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[INDUS]" />
+                    <inputColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].Columns[CHAS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="CHAS"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[CHAS]"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[CHAS]" />
+                    <inputColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].Columns[NOX]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="NOX"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[NOX]"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[NOX]" />
+                    <inputColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].Columns[RM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="RM"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[RM]"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[RM]" />
+                    <inputColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].Columns[AGE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="AGE"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[AGE]"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[AGE]" />
+                    <inputColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].Columns[DIS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="DIS"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[DIS]"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[DIS]" />
+                    <inputColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].Columns[RAD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="RAD"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[RAD]"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[RAD]" />
+                    <inputColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].Columns[TAX]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TAX"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[TAX]"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[TAX]" />
+                    <inputColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].Columns[PTRATIO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="PTRATIO"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[PTRATIO]"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[PTRATIO]" />
+                    <inputColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].Columns[B]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="B"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[B]"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[B]" />
+                    <inputColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].Columns[LSTAT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="LSTAT"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[LSTAT]"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[LSTAT]" />
+                    <inputColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].Columns[MEDV]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="MEDV"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[MEDV]"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[MEDV]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[CRIM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CRIM" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[ZN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ZN" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[INDUS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="INDUS" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[CHAS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CHAS" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[NOX]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="NOX" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[RM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="RM" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[AGE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="AGE" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[DIS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="DIS" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[RAD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="RAD" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[TAX]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TAX" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[PTRATIO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PTRATIO" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[B]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="B" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[LSTAT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="LSTAT" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input].ExternalColumns[MEDV]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MEDV" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Load to Azure BLOB\House Pricing"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="2057"
+              name="House Pricing"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load to Azure BLOB\House Pricing.Connections[FlatFileConnection]"
+                  connectionManagerID="{8C887A8E-07A8-40F5-A82A-8ED1583BC9DD}:invalid"
+                  connectionManagerRefId="{8C887A8E-07A8-40F5-A82A-8ED1583BC9DD}:invalid"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[CRIM]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[CRIM]"
+                      length="50"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[CRIM]"
+                      name="CRIM"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[ZN]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[ZN]"
+                      length="50"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[ZN]"
+                      name="ZN"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[INDUS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[INDUS]"
+                      length="50"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[INDUS]"
+                      name="INDUS"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[CHAS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[CHAS]"
+                      length="50"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[CHAS]"
+                      name="CHAS"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[NOX]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[NOX]"
+                      length="50"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[NOX]"
+                      name="NOX"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[RM]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[RM]"
+                      length="50"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[RM]"
+                      name="RM"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[AGE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[AGE]"
+                      length="50"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[AGE]"
+                      name="AGE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[DIS]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[DIS]"
+                      length="50"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[DIS]"
+                      name="DIS"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[RAD]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[RAD]"
+                      length="50"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[RAD]"
+                      name="RAD"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[TAX]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[TAX]"
+                      length="50"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[TAX]"
+                      name="TAX"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[PTRATIO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[PTRATIO]"
+                      length="50"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[PTRATIO]"
+                      name="PTRATIO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[B]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[B]"
+                      length="50"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[B]"
+                      name="B"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[LSTAT]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[LSTAT]"
+                      length="50"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[LSTAT]"
+                      name="LSTAT"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[MEDV]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[MEDV]"
+                      length="50"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].Columns[MEDV]"
+                      name="MEDV"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[CRIM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CRIM" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[ZN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ZN" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[INDUS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="INDUS" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[CHAS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CHAS" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[NOX]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="NOX" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[RM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="RM" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[AGE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="AGE" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[DIS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="DIS" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[RAD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="RAD" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[TAX]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TAX" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[PTRATIO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PTRATIO" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[B]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="B" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[LSTAT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="LSTAT" />
+                    <externalMetadataColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output].ExternalColumns[MEDV]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="MEDV" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load to Azure BLOB.Paths[Flat File Source Output]"
+              endId="Package\Load to Azure BLOB\Azure Blob Destination.Inputs[Input]"
+              name="Flat File Source Output"
+              startId="Package\Load to Azure BLOB\House Pricing.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load to SQLDB"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{4074C37C-7329-4132-A583-1A73773D0BBD}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load to SQLDB"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load to SQLDB\House Pricing CSV"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="© Microsoft Corporation; All Rights Reserved;"
+              description="Extracts data from a blob in Azure Storage. The supported file formats are: Text and Avro. To work with Azure Data Lake Storage Gen2, use Flexible File Source with Azure Storage Connection Manager instead."
+              name="House Pricing CSV"
+              usesDispositions="true"
+              validateExternalMetadata="False">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The name of blob container"
+                  expressionType="Notify"
+                  name="Blob Container">demojrctnr</property>
+                <property
+                  dataType="System.String"
+                  description="The full name of blob"
+                  expressionType="Notify"
+                  name="Blob Name">HousePRicingData.csv</property>
+                <property
+                  dataType="System.Int32"
+                  description="The format of blob file"
+                  name="Blob Format"
+                  typeConverter="Microsoft.SqlServer.IntegrationService.CloudComponents.Utilities.AzBlobFormatEnumStringConverter">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Compress File"
+                  name="Compress File">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="The compression type"
+                  name="Compression Type"
+                  typeConverter="Microsoft.SqlServer.IntegrationService.CloudComponents.Utilities.AzCompressionTypeEnumStringConverter">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The compression level"
+                  name="Compression Level"
+                  typeConverter="Microsoft.SqlServer.IntegrationService.CloudComponents.Utilities.AzCompressionLevelEnumStringConverter">0</property>
+                <property
+                  dataType="System.String"
+                  description="The character used to delimit columns in text file"
+                  name="Column Delimiter">,</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Column names in the first data row"
+                  name="First Row as Column Names">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">AzBlobSrc</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load to SQLDB\House Pricing CSV.Connections[Azure Storage]"
+                  connectionManagerID="{4B334CD0-FDE8-413F-A673-3660A26EA6C1}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Azure BLOB]"
+                  description="Connection Manager for Azure Storage"
+                  name="Azure Storage" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output]"
+                  name="Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[CRIM]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[CRIM]"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[CRIM]"
+                      name="CRIM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[ZN]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[ZN]"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[ZN]"
+                      name="ZN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[INDUS]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[INDUS]"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[INDUS]"
+                      name="INDUS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[CHAS]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[CHAS]"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[CHAS]"
+                      name="CHAS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[NOX]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[NOX]"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[NOX]"
+                      name="NOX"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[RM]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[RM]"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[RM]"
+                      name="RM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[AGE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[AGE]"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[AGE]"
+                      name="AGE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[DIS]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[DIS]"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[DIS]"
+                      name="DIS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[RAD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[RAD]"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[RAD]"
+                      name="RAD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[TAX]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[TAX]"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[TAX]"
+                      name="TAX"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[PTRATIO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[PTRATIO]"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[PTRATIO]"
+                      name="PTRATIO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[B]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[B]"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[B]"
+                      name="B"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[LSTAT]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[LSTAT]"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[LSTAT]"
+                      name="LSTAT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[MEDV]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[MEDV]"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[MEDV]"
+                      name="MEDV"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[CRIM]"
+                      dataType="wstr"
+                      length="255"
+                      name="CRIM" />
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[ZN]"
+                      dataType="wstr"
+                      length="255"
+                      name="ZN" />
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[INDUS]"
+                      dataType="wstr"
+                      length="255"
+                      name="INDUS" />
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[CHAS]"
+                      dataType="wstr"
+                      length="255"
+                      name="CHAS" />
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[NOX]"
+                      dataType="wstr"
+                      length="255"
+                      name="NOX" />
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[RM]"
+                      dataType="wstr"
+                      length="255"
+                      name="RM" />
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[AGE]"
+                      dataType="wstr"
+                      length="255"
+                      name="AGE" />
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[DIS]"
+                      dataType="wstr"
+                      length="255"
+                      name="DIS" />
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[RAD]"
+                      dataType="wstr"
+                      length="255"
+                      name="RAD" />
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[TAX]"
+                      dataType="wstr"
+                      length="255"
+                      name="TAX" />
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[PTRATIO]"
+                      dataType="wstr"
+                      length="255"
+                      name="PTRATIO" />
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[B]"
+                      dataType="wstr"
+                      length="255"
+                      name="B" />
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[LSTAT]"
+                      dataType="wstr"
+                      length="255"
+                      name="LSTAT" />
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].ExternalColumns[MEDV]"
+                      dataType="wstr"
+                      length="255"
+                      name="MEDV" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output]"
+                  isErrorOut="true"
+                  name="Error output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[CRIM]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[CRIM]"
+                      name="CRIM" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[ZN]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[ZN]"
+                      name="ZN" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[INDUS]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[INDUS]"
+                      name="INDUS" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[CHAS]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[CHAS]"
+                      name="CHAS" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[NOX]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[NOX]"
+                      name="NOX" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[RM]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[RM]"
+                      name="RM" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[AGE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[AGE]"
+                      name="AGE" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[DIS]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[DIS]"
+                      name="DIS" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[RAD]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[RAD]"
+                      name="RAD" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[TAX]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[TAX]"
+                      name="TAX" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[PTRATIO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[PTRATIO]"
+                      name="PTRATIO" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[B]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[B]"
+                      name="B" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[LSTAT]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[LSTAT]"
+                      name="LSTAT" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[MEDV]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Error output].Columns[MEDV]"
+                      name="MEDV" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load to SQLDB\_tmp_staging_House"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="_tmp_staging_House"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[_tmp_staging_House]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load to SQLDB\_tmp_staging_House.Connections[OleDbConnection]"
+                  connectionManagerID="{5FC58280-8424-4B4D-94EC-E61D02856B9E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AZURE_DEMO_DBDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].Columns[CRIM]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CRIM"
+                      externalMetadataColumnId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[CRIM]"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[CRIM]" />
+                    <inputColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].Columns[ZN]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ZN"
+                      externalMetadataColumnId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[ZN]"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[ZN]" />
+                    <inputColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].Columns[INDUS]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="INDUS"
+                      externalMetadataColumnId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[INDUS]"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[INDUS]" />
+                    <inputColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].Columns[CHAS]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CHAS"
+                      externalMetadataColumnId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[CHAS]"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[CHAS]" />
+                    <inputColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].Columns[NOX]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="NOX"
+                      externalMetadataColumnId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[NOX]"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[NOX]" />
+                    <inputColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].Columns[RM]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="RM"
+                      externalMetadataColumnId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[RM]"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[RM]" />
+                    <inputColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].Columns[AGE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="AGE"
+                      externalMetadataColumnId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[AGE]"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[AGE]" />
+                    <inputColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].Columns[DIS]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="DIS"
+                      externalMetadataColumnId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[DIS]"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[DIS]" />
+                    <inputColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].Columns[RAD]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="RAD"
+                      externalMetadataColumnId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[RAD]"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[RAD]" />
+                    <inputColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].Columns[TAX]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="TAX"
+                      externalMetadataColumnId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[TAX]"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[TAX]" />
+                    <inputColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].Columns[PTRATIO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PTRATIO"
+                      externalMetadataColumnId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[PTRATIO]"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[PTRATIO]" />
+                    <inputColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].Columns[B]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="B"
+                      externalMetadataColumnId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[B]"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[B]" />
+                    <inputColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].Columns[LSTAT]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="LSTAT"
+                      externalMetadataColumnId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[LSTAT]"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[LSTAT]" />
+                    <inputColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].Columns[MEDV]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="MEDV"
+                      externalMetadataColumnId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[MEDV]"
+                      lineageId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output].Columns[MEDV]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[CRIM]"
+                      dataType="wstr"
+                      length="255"
+                      name="CRIM" />
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[ZN]"
+                      dataType="wstr"
+                      length="255"
+                      name="ZN" />
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[INDUS]"
+                      dataType="wstr"
+                      length="255"
+                      name="INDUS" />
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[CHAS]"
+                      dataType="wstr"
+                      length="255"
+                      name="CHAS" />
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[NOX]"
+                      dataType="wstr"
+                      length="255"
+                      name="NOX" />
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[RM]"
+                      dataType="wstr"
+                      length="255"
+                      name="RM" />
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[AGE]"
+                      dataType="wstr"
+                      length="255"
+                      name="AGE" />
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[DIS]"
+                      dataType="wstr"
+                      length="255"
+                      name="DIS" />
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[RAD]"
+                      dataType="wstr"
+                      length="255"
+                      name="RAD" />
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[TAX]"
+                      dataType="wstr"
+                      length="255"
+                      name="TAX" />
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[PTRATIO]"
+                      dataType="wstr"
+                      length="255"
+                      name="PTRATIO" />
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[B]"
+                      dataType="wstr"
+                      length="255"
+                      name="B" />
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[LSTAT]"
+                      dataType="wstr"
+                      length="255"
+                      name="LSTAT" />
+                    <externalMetadataColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input].ExternalColumns[MEDV]"
+                      dataType="wstr"
+                      length="255"
+                      name="MEDV" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load to SQLDB\_tmp_staging_House.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load to SQLDB\_tmp_staging_House.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load to SQLDB\_tmp_staging_House.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load to SQLDB\_tmp_staging_House.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load to SQLDB.Paths[Output]"
+              endId="Package\Load to SQLDB\_tmp_staging_House.Inputs[OLE DB Destination Input]"
+              name="Output"
+              startId="Package\Load to SQLDB\House Pricing CSV.Outputs[Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Prepare tables"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{43FA0DF3-213D-4F03-9FC2-1653D3ED1A1E}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Prepare tables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5FC58280-8424-4B4D-94EC-E61D02856B9E}"
+          SQLTask:SqlStatementSource="DELETE FROM [dbo].[_tmp_staging_House]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{933119D9-C8CC-49AF-8AD0-82CF3120077D}"
+      DTS:From="Package\Load to Azure BLOB"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load to SQLDB" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{89D4CF72-4563-4DE1-9018-9CCE4AA3AD35}"
+      DTS:From="Package\Prepare tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Load to Azure BLOB" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Load to Azure BLOB"
+          TopLeft="5.50000000000003,107.5" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Load to SQLDB"
+          TopLeft="17,209.5" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Prepare tables"
+          TopLeft="10.5,5.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="92,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="92,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load to Azure BLOB">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="186,42"
+          Id="Package\Load to Azure BLOB\Azure Blob Destination"
+          TopLeft="366,216" />
+        <NodeLayout
+          Size="143,42"
+          Id="Package\Load to Azure BLOB\House Pricing"
+          TopLeft="359,103" />
+        <EdgeLayout
+          Id="Package\Load to Azure BLOB.Paths[Flat File Source Output]"
+          TopLeft="430.5,145">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="28.5,71"
+              Start="0,0"
+              End="28.5,63.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.5"
+                    Point2="0,35.5"
+                    Point3="4,35.5" />
+                  <mssgle:LineSegment
+                    End="24.5,35.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="24.5,35.5"
+                    Point2="28.5,35.5"
+                    Point3="28.5,39.5" />
+                  <mssgle:LineSegment
+                    End="28.5,63.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load to Azure BLOB\Azure Blob Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load to SQLDB">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Load to SQLDB\House Pricing CSV"
+          TopLeft="275,64" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Load to SQLDB\_tmp_staging_House"
+          TopLeft="315,206" />
+        <EdgeLayout
+          Id="Package\Load to SQLDB.Paths[Output]"
+          TopLeft="357.5,106">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="46.5,100"
+              Start="0,0"
+              End="46.5,92.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,46"
+                    Point2="0,50"
+                    Point3="4,50" />
+                  <mssgle:LineSegment
+                    End="42.5,50" />
+                  <mssgle:CubicBezierSegment
+                    Point1="42.5,50"
+                    Point2="46.5,50"
+                    Point3="46.5,54" />
+                  <mssgle:LineSegment
+                    End="46.5,92.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load to SQLDB\House Pricing CSV">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load to SQLDB\_tmp_staging_House">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
