@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 trigger:
-- develop
+- master
 
 pool:
   vmImage: 'windows-latest'
@@ -18,7 +18,7 @@ steps:
     script: |
       # Write your PowerShell commands here.
       
-      Write-Host "$(Get-Date) Server: $($env:COMPUTERNAME), Working directory: $(GET-LOCATION), Agent Release Directory:$(Agent.ReleaseDirectory) ";
+      Write-Host "$(Get-Date) Server: $($env:COMPUTERNAME), Working directory: $(GET-LOCATION) ";
       Write-Host "$(Get-Date) CollectionId: $(system.collectionId),  User domain: $($env:UserDomain)  User:$($env:UserName)";
       Write-Host "$(Get-Date) Artifact staging Directory:$(Build.ArtifactStagingDirectory)";
       Write-Host "$(Get-Date) Build Sources directory:  $(build.sourcesdirectory)";
