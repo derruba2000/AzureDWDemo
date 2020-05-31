@@ -4,16 +4,39 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
+- develop
 
 pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: PowerShell@2
+  displayName: '(Pshell):Build Info Report'
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Write your PowerShell commands here.
+      
+      Write-Host "$(Get-Date) Server: $($env:COMPUTERNAME), Working directory: $(GET-LOCATION) ";
+      Write-Host "$(Get-Date) CollectionId: $(system.collectionId), ENV: $(scriptAction), User domain: $($env:UserDomain)  User:$($env:UserName)";
+      Write-Host "$(Get-Date) Artifact staging Directory:$(Build.ArtifactStagingDirectory)";
+      Write-Host "$(Get-Date) Build Sources directory:  $(build.sourcesdirectory)";
+      Write-Host "$(Get-Date) Build Id,Number: $(Build.BuildId), $(Build.BuildNumber)";
+      Write-Host "$(Get-Date) Binaries Folder:$(Build.BinariesDirectory), Build Definition Name:$(Build.DefinitionName), Build StagingDirectory Name:$(Build.StagingDirectory)";
+      Write-Host "$(Get-Date) Build source Version:$(Build.SourceVersion), Build Source Branch:$(Build.SourceBranch), Build Repository Name: $(Build.Repository.Name)";
+      
+
+- task: SqlAzureDacpacDeployment@1
+  inputs:
+    AuthenticationType: 'server'
+    ServerName: 'demojrdw.database.windows.net'
+    DatabaseName: 'demojrdwdb'
+    SqlUsername: '$(SQLUser)'
+    SqlPassword: '$(SQLPassword)'
+    deployType: 'DacpacTask'
+    DeploymentAction: 'Publish'
+    DacpacFile: '$(agent.releaseDirectory)\Database.dacpac'
+    PublishProfile: '.\RDBMS\Deployment\AzureDB.publish.xml'
+    IpDetectionMethod: 'AutoDetect'
+  displayName: 'Deploying to Azure Database'
