@@ -135,14 +135,17 @@
             "sourceColumn": "response"
           },
           {
-            "name": "city",
-            "dataType": "int64",
-            "sourceColumn": "city"
-          },
-          {
-            "name": "quotedate",
+            "name": "quotedateX",
             "dataType": "dateTime",
-            "sourceColumn": "quotedate"
+            "isHidden": true,
+            "sourceColumn": "quotedate",
+            "formatString": "Short Date",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"DateTimeShortDatePattern\" />"
+              }
+            ]
           },
           {
             "name": "srky_personal",
@@ -167,6 +170,11 @@
             "dataType": "string",
             "isHidden": true,
             "sourceColumn": "srky_ProductInfo_Quote"
+          },
+          {
+            "name": "Office",
+            "dataType": "string",
+            "sourceColumn": "Office"
           }
         ],
         "partitions": [
@@ -186,9 +194,12 @@
                 "    #\"Merged Columns\" = Table.CombineColumns(Table.TransformColumnTypes(#\"Duplicated Column1\", {{\"srky_employment\", type text}, {\"tableId\", type text}}, \"en-GB\"),{\"srky_employment\", \"tableId\"},Combiner.CombineTextByDelimiter(\":\", QuoteStyle.None),\"srky_Employment_Quote\"),",
                 "    #\"Merged Columns1\" = Table.CombineColumns(Table.TransformColumnTypes(#\"Merged Columns\", {{\"srky_family\", type text}, {\"tableId - Copy\", type text}}, \"en-GB\"),{\"srky_family\", \"tableId - Copy\"},Combiner.CombineTextByDelimiter(\":\", QuoteStyle.None),\"srky_Family_Quote\"),",
                 "    #\"Merged Columns2\" = Table.CombineColumns(Table.TransformColumnTypes(#\"Merged Columns1\", {{\"srky_productinfo\", type text}, {\"tableId - Copy.1\", type text}}, \"en-GB\"),{\"srky_productinfo\", \"tableId - Copy.1\"},Combiner.CombineTextByDelimiter(\":\", QuoteStyle.None),\"srky_ProductInfo_Quote\"),",
-                "    #\"Reordered Columns\" = Table.ReorderColumns(#\"Merged Columns2\",{\"QuoteId\", \"hash_insuredinfo\", \"hash_insurancehistory\", \"hash_medical_hist\", \"response\", \"city\", \"quotedate\", \"srky_personal\", \"srky_Employment_Quote\", \"srky_Family_Quote\", \"srky_ProductInfo_Quote\"})",
+                "    #\"Reordered Columns\" = Table.ReorderColumns(#\"Merged Columns2\",{\"QuoteId\", \"hash_insuredinfo\", \"hash_insurancehistory\", \"hash_medical_hist\", \"response\", \"city\", \"quotedate\", \"srky_personal\", \"srky_Employment_Quote\", \"srky_Family_Quote\", \"srky_ProductInfo_Quote\"}),",
+                "    #\"Added Conditional Column\" = Table.AddColumn(#\"Reordered Columns\", \"Office\", each if [city] = 0 then \"London, England\" else if [city] = 1 then \"Manchester, England\" else if [city] = 2 then \"Oxford, England\" else if [city] = 3 then \"Birmingham, England\" else \"Leeds, England\"),",
+                "    #\"Removed Columns1\" = Table.RemoveColumns(#\"Added Conditional Column\",{\"city\"}),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Removed Columns1\",{{\"quotedate\", type date}})",
                 "in",
-                "    #\"Reordered Columns\""
+                "    #\"Changed Type\""
               ]
             }
           }
@@ -357,6 +368,64 @@
             }
           }
         ]
+      },
+      {
+        "name": "Dates",
+        "columns": [
+          {
+            "type": "calculatedTableColumn",
+            "name": "QuoteDateX",
+            "dataType": "dateTime",
+            "isNameInferred": false,
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "sourceColumn": "[Date]"
+          },
+          {
+            "type": "calculated",
+            "name": "QuoteYear",
+            "dataType": "int64",
+            "isDataTypeInferred": true,
+            "expression": "YEAR(Dates[QuoteDateX])"
+          },
+          {
+            "type": "calculated",
+            "name": "QuoteDate",
+            "dataType": "dateTime",
+            "isDataTypeInferred": true,
+            "expression": "Dates[QuoteDateX]",
+            "formatString": "Short Date",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"DateTimeShortDatePattern\" />"
+              }
+            ]
+          },
+          {
+            "type": "calculated",
+            "name": "Half",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "expression": "IF([QuoteDate]<7,\"H1\",\"H2\")"
+          },
+          {
+            "type": "calculated",
+            "name": "YearMonth",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "expression": "Dates[QuoteYear] & FORMAT(MONTH(Dates[QuoteDateX]),\"-00\")"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "CalculatedTable 1",
+            "source": {
+              "type": "calculated",
+              "expression": "CALENDAR (DATE(2019,1,1), DATE(2020,6,1))"
+            }
+          }
+        ]
       }
     ],
     "relationships": [
@@ -413,6 +482,14 @@
         "fromColumn": "srky_Family",
         "toTable": "Family",
         "toColumn": "srky_Family",
+        "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "c52f77ae-27eb-4bff-8f31-38e7a6777efe",
+        "fromTable": "MetricsQuotes",
+        "fromColumn": "quotedateX",
+        "toTable": "Dates",
+        "toColumn": "QuoteDate",
         "crossFilteringBehavior": "bothDirections"
       }
     ],
