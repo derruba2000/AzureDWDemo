@@ -26,7 +26,7 @@ steps:
 
 - task: SqlAzureDacpacDeployment@1
   inputs:
-    azureSubscription: '$(AzureSubscription)'
+    azureSubscription: 'Pay-As-You-Go(64ef997a-f1f3-4350-a98b-86f3307a3444)'
     AuthenticationType: 'server'
     ServerName: 'demojrdw.database.windows.net'
     DatabaseName: 'demojrdwdb'
