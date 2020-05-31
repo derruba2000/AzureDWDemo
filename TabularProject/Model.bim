@@ -1,0 +1,181 @@
+{
+  "name": "SemanticModel",
+  "compatibilityLevel": 1400,
+  "model": {
+    "culture": "en-GB",
+    "dataSources": [
+      {
+        "type": "structured",
+        "name": "SQL/localhost;demodwjrdb",
+        "connectionDetails": {
+          "protocol": "tds",
+          "address": {
+            "server": "localhost",
+            "database": "demodwjrdb"
+          },
+          "authentication": null,
+          "query": null
+        },
+        "options": {},
+        "credential": {
+          "AuthenticationKind": "UsernamePassword",
+          "Username": "ssisSVC",
+          "EncryptConnection": false
+        }
+      }
+    ],
+    "tables": [
+      {
+        "name": "MetricsQuotes",
+        "columns": [
+          {
+            "name": "QuoteId",
+            "dataType": "int64",
+            "sourceColumn": "id"
+          },
+          {
+            "name": "hash_insuredinfo",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "hash_insuredinfo"
+          },
+          {
+            "name": "hash_insurancehistory",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "hash_insurancehistory"
+          },
+          {
+            "name": "hash_medical_hist",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "hash_medical_hist"
+          },
+          {
+            "name": "response",
+            "dataType": "int64",
+            "sourceColumn": "response"
+          },
+          {
+            "name": "cityCode",
+            "dataType": "int64",
+            "sourceColumn": "city"
+          },
+          {
+            "name": "quotedate",
+            "dataType": "dateTime",
+            "sourceColumn": "quotedate"
+          },
+          {
+            "name": "srky_employment",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "srky_employment"
+          },
+          {
+            "name": "srky_family",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "srky_family"
+          },
+          {
+            "name": "srky_personal",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "srky_personal"
+          },
+          {
+            "name": "srky_productinfo",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "srky_productinfo"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/localhost;demodwjrdb\",",
+                "    dbo_vw_fact_Quotes = Source{[Schema=\"dbo\",Item=\"vw_fact_Quotes\"]}[Data]",
+                "in",
+                "    dbo_vw_fact_Quotes"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Personal",
+        "columns": [
+          {
+            "name": "srky_Personal",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "srky_Personal"
+          },
+          {
+            "name": "Insurance Age",
+            "dataType": "double",
+            "sourceColumn": "InsAge"
+          },
+          {
+            "name": "Height",
+            "dataType": "double",
+            "sourceColumn": "Ht"
+          },
+          {
+            "name": "Weight",
+            "dataType": "double",
+            "sourceColumn": "Wt"
+          },
+          {
+            "name": "BMI",
+            "dataType": "double",
+            "sourceColumn": "BMI"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/localhost;demodwjrdb\",",
+                "    dbo_dim_Personal = Source{[Schema=\"dbo\",Item=\"dim_Personal\"]}[Data]",
+                "in",
+                "    dbo_dim_Personal"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "expressions": [
+      {
+        "name": "Employment",
+        "kind": "m",
+        "expression": [
+          "let",
+          "    Source = #\"SQL/localhost;demodwjrdb\",",
+          "    dbo_dim_Employment = Source{[Schema=\"dbo\",Item=\"dim_Employment\"]}[Data],",
+          "    #\"Removed Columns\" = Table.RemoveColumns(dbo_dim_Employment,{\"fact_Quotes\", \"HASH_EmploymentInfo\"})",
+          "in",
+          "    #\"Removed Columns\""
+        ]
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "500"
+      }
+    ]
+  },
+  "id": "SemanticModel"
+}
