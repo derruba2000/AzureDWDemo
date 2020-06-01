@@ -1,0 +1,575 @@
+{
+  "name": "DWDemoProj",
+  "compatibilityLevel": 1400,
+  "model": {
+    "culture": "en-GB",
+    "dataSources": [
+      {
+        "type": "structured",
+        "name": "SQL/localhost;demodwjrdb",
+        "connectionDetails": {
+          "protocol": "tds",
+          "address": {
+            "server": "localhost",
+            "database": "demodwjrdb"
+          },
+          "authentication": null,
+          "query": null
+        },
+        "credential": {
+          "AuthenticationKind": "ServiceAccount",
+          "EncryptConnection": false
+        }
+      }
+    ],
+    "tables": [
+      {
+        "name": "Personal",
+        "columns": [
+          {
+            "name": "srky_Personal",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "srky_Personal"
+          },
+          {
+            "name": "Insurance Age",
+            "dataType": "double",
+            "sourceColumn": "InsAge"
+          },
+          {
+            "name": "Height",
+            "dataType": "double",
+            "sourceColumn": "Ht"
+          },
+          {
+            "name": "Weight",
+            "dataType": "double",
+            "sourceColumn": "Wt"
+          },
+          {
+            "name": "BMI",
+            "dataType": "double",
+            "sourceColumn": "BMI"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/localhost;demodwjrdb\",",
+                "    dbo_dim_Personal = Source{[Schema=\"dbo\",Item=\"dim_Personal\"]}[Data]",
+                "in",
+                "    dbo_dim_Personal"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "_bridge_Employment",
+        "isHidden": true,
+        "columns": [
+          {
+            "name": "srky_Employment_Quote",
+            "dataType": "string",
+            "sourceColumn": "srky_Employment_Quote"
+          },
+          {
+            "name": "srky_Employment",
+            "dataType": "string",
+            "sourceColumn": "srky_Employment"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = _bridge_Employment",
+                "in",
+                "    Source"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "MetricsQuotes",
+        "columns": [
+          {
+            "name": "QuoteId",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "QuoteId"
+          },
+          {
+            "name": "hash_insuredinfo",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "hash_insuredinfo"
+          },
+          {
+            "name": "hash_insurancehistory",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "hash_insurancehistory"
+          },
+          {
+            "name": "hash_medical_hist",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "hash_medical_hist"
+          },
+          {
+            "name": "response",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "response"
+          },
+          {
+            "name": "quotedateX",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "quotedate",
+            "formatString": "Short Date",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"DateTimeShortDatePattern\" />"
+              }
+            ]
+          },
+          {
+            "name": "srky_personal",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "srky_personal"
+          },
+          {
+            "name": "srky_Employment_Quote",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "srky_Employment_Quote"
+          },
+          {
+            "name": "srky_Family_Quote",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "srky_Family_Quote"
+          },
+          {
+            "name": "srky_ProductInfo_Quote",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "srky_ProductInfo_Quote"
+          },
+          {
+            "name": "Office",
+            "dataType": "string",
+            "sourceColumn": "Office"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/localhost;demodwjrdb\",",
+                "    dbo_vw_fact_Quotes = Source{[Schema=\"dbo\",Item=\"vw_fact_Quotes\"]}[Data],",
+                "    #\"Renamed Columns\" = Table.RenameColumns(dbo_vw_fact_Quotes,{{\"id\", \"QuoteId\"}}),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Renamed Columns\",{\"processid\", \"executionid\", \"HASH_fact\"}),",
+                "    #\"Duplicated Column\" = Table.DuplicateColumn(#\"Removed Columns\", \"tableId\", \"tableId - Copy\"),",
+                "    #\"Duplicated Column1\" = Table.DuplicateColumn(#\"Duplicated Column\", \"tableId\", \"tableId - Copy.1\"),",
+                "    #\"Merged Columns\" = Table.CombineColumns(Table.TransformColumnTypes(#\"Duplicated Column1\", {{\"srky_employment\", type text}, {\"tableId\", type text}}, \"en-GB\"),{\"srky_employment\", \"tableId\"},Combiner.CombineTextByDelimiter(\":\", QuoteStyle.None),\"srky_Employment_Quote\"),",
+                "    #\"Merged Columns1\" = Table.CombineColumns(Table.TransformColumnTypes(#\"Merged Columns\", {{\"srky_family\", type text}, {\"tableId - Copy\", type text}}, \"en-GB\"),{\"srky_family\", \"tableId - Copy\"},Combiner.CombineTextByDelimiter(\":\", QuoteStyle.None),\"srky_Family_Quote\"),",
+                "    #\"Merged Columns2\" = Table.CombineColumns(Table.TransformColumnTypes(#\"Merged Columns1\", {{\"srky_productinfo\", type text}, {\"tableId - Copy.1\", type text}}, \"en-GB\"),{\"srky_productinfo\", \"tableId - Copy.1\"},Combiner.CombineTextByDelimiter(\":\", QuoteStyle.None),\"srky_ProductInfo_Quote\"),",
+                "    #\"Reordered Columns\" = Table.ReorderColumns(#\"Merged Columns2\",{\"QuoteId\", \"hash_insuredinfo\", \"hash_insurancehistory\", \"hash_medical_hist\", \"response\", \"city\", \"quotedate\", \"srky_personal\", \"srky_Employment_Quote\", \"srky_Family_Quote\", \"srky_ProductInfo_Quote\"}),",
+                "    #\"Added Conditional Column\" = Table.AddColumn(#\"Reordered Columns\", \"Office\", each if [city] = 0 then \"London, England\" else if [city] = 1 then \"Manchester, England\" else if [city] = 2 then \"Oxford, England\" else if [city] = 3 then \"Birmingham, England\" else \"Leeds, England\"),",
+                "    #\"Removed Columns1\" = Table.RemoveColumns(#\"Added Conditional Column\",{\"city\"}),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Removed Columns1\",{{\"quotedate\", type date}})",
+                "in",
+                "    #\"Changed Type\""
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Quotes",
+            "expression": "DISTINCTCOUNT([QuoteId])"
+          },
+          {
+            "name": "Risk",
+            "expression": "AVERAGE([response])"
+          }
+        ]
+      },
+      {
+        "name": "_bridge_ProductInfo",
+        "isHidden": true,
+        "columns": [
+          {
+            "name": "srky_ProductInfo_Quote",
+            "dataType": "string",
+            "sourceColumn": "srky_ProductInfo_Quote"
+          },
+          {
+            "name": "srky_ProductInfo",
+            "dataType": "string",
+            "sourceColumn": "srky_ProductInfo"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": "_bridge_ProductInfo"
+            }
+          }
+        ]
+      },
+      {
+        "name": "_bridge_Family",
+        "isHidden": true,
+        "columns": [
+          {
+            "name": "srky_Family_Quote",
+            "dataType": "string",
+            "sourceColumn": "srky_Family_Quote"
+          },
+          {
+            "name": "srky_Family",
+            "dataType": "string",
+            "sourceColumn": "srky_Family"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": "_bridge_Family"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Employment",
+        "columns": [
+          {
+            "name": "srky_Employment",
+            "dataType": "string",
+            "sourceColumn": "srky_Employment"
+          },
+          {
+            "name": "Employment Info",
+            "dataType": "string",
+            "sourceColumn": "Employment Info"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = _bridge_Employment,",
+                "    #\"Duplicated Column\" = Table.DuplicateColumn(Source, \"srky_Employment\", \"srky_Employment - Copy\"),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Duplicated Column\",{{\"srky_Employment - Copy\", \"Employment Info\"}}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Renamed Columns\", {\"Employment Info\"}),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Removed Duplicates\",{\"srky_Employment_Quote\"})",
+                "in",
+                "    #\"Removed Columns\""
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "ProductInfo",
+        "columns": [
+          {
+            "name": "srky_ProductInfo",
+            "dataType": "string",
+            "sourceColumn": "srky_ProductInfo"
+          },
+          {
+            "name": "Product Info",
+            "dataType": "string",
+            "sourceColumn": "Product Info"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = _bridge_ProductInfo,",
+                "    #\"Removed Columns\" = Table.RemoveColumns(Source,{\"srky_ProductInfo_Quote\"}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Removed Columns\"),",
+                "    #\"Duplicated Column\" = Table.DuplicateColumn(#\"Removed Duplicates\", \"srky_ProductInfo\", \"srky_ProductInfo - Copy\"),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Duplicated Column\",{{\"srky_ProductInfo - Copy\", \"Product Info\"}})",
+                "in",
+                "    #\"Renamed Columns\""
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Family",
+        "columns": [
+          {
+            "name": "srky_Family",
+            "dataType": "string",
+            "sourceColumn": "srky_Family"
+          },
+          {
+            "name": "Family",
+            "dataType": "string",
+            "sourceColumn": "Family"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = _bridge_Family,",
+                "    #\"Removed Columns\" = Table.RemoveColumns(Source,{\"srky_Family_Quote\"}),",
+                "    #\"Removed Duplicates\" = Table.Distinct(#\"Removed Columns\"),",
+                "    #\"Duplicated Column\" = Table.DuplicateColumn(#\"Removed Duplicates\", \"srky_Family\", \"srky_Family - Copy\"),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Duplicated Column\",{{\"srky_Family - Copy\", \"Family\"}})",
+                "in",
+                "    #\"Renamed Columns\""
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Dates",
+        "columns": [
+          {
+            "type": "calculatedTableColumn",
+            "name": "QuoteDateX",
+            "dataType": "dateTime",
+            "isNameInferred": false,
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "sourceColumn": "[Date]"
+          },
+          {
+            "type": "calculated",
+            "name": "QuoteYear",
+            "dataType": "int64",
+            "isDataTypeInferred": true,
+            "expression": "YEAR(Dates[QuoteDateX])"
+          },
+          {
+            "type": "calculated",
+            "name": "QuoteDate",
+            "dataType": "dateTime",
+            "isDataTypeInferred": true,
+            "expression": "Dates[QuoteDateX]",
+            "formatString": "Short Date",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"DateTimeShortDatePattern\" />"
+              }
+            ]
+          },
+          {
+            "type": "calculated",
+            "name": "Half",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "expression": "IF([QuoteDate]<7,\"H1\",\"H2\")"
+          },
+          {
+            "type": "calculated",
+            "name": "YearMonth",
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "expression": "Dates[QuoteYear] & FORMAT(MONTH(Dates[QuoteDateX]),\"-00\")"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "CalculatedTable 1",
+            "source": {
+              "type": "calculated",
+              "expression": "CALENDAR (DATE(2019,1,1), DATE(2020,6,1))"
+            }
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "73c5d879-576f-4284-86e6-8e8cc622bd62",
+        "fromTable": "_bridge_Employment",
+        "fromColumn": "srky_Employment_Quote",
+        "toTable": "MetricsQuotes",
+        "toColumn": "srky_Employment_Quote",
+        "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "9eae4e32-01bc-48c3-b879-f5a5cbda1aa0",
+        "fromTable": "MetricsQuotes",
+        "fromColumn": "srky_personal",
+        "toTable": "Personal",
+        "toColumn": "srky_Personal"
+      },
+      {
+        "name": "4215ff55-df93-4edd-83a9-edc018f27679",
+        "fromTable": "_bridge_ProductInfo",
+        "fromColumn": "srky_ProductInfo_Quote",
+        "toTable": "MetricsQuotes",
+        "toColumn": "srky_ProductInfo_Quote",
+        "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "ac49929f-80a9-42d7-afd4-3c73d27be15a",
+        "fromTable": "_bridge_Family",
+        "fromColumn": "srky_Family_Quote",
+        "toTable": "MetricsQuotes",
+        "toColumn": "srky_Family_Quote",
+        "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "f4b4cc1b-d696-4b00-b62b-23b03e037a9d",
+        "fromTable": "_bridge_Employment",
+        "fromColumn": "srky_Employment",
+        "toTable": "Employment",
+        "toColumn": "srky_Employment",
+        "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "f2131376-d81f-4e86-b910-b389e58d8157",
+        "fromTable": "_bridge_ProductInfo",
+        "fromColumn": "srky_ProductInfo",
+        "toTable": "ProductInfo",
+        "toColumn": "srky_ProductInfo",
+        "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "981d10cb-abf2-46b4-813d-ecc15cd92466",
+        "fromTable": "_bridge_Family",
+        "fromColumn": "srky_Family",
+        "toTable": "Family",
+        "toColumn": "srky_Family",
+        "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "c52f77ae-27eb-4bff-8f31-38e7a6777efe",
+        "fromTable": "MetricsQuotes",
+        "fromColumn": "quotedateX",
+        "toTable": "Dates",
+        "toColumn": "QuoteDate",
+        "crossFilteringBehavior": "bothDirections"
+      }
+    ],
+    "expressions": [
+      {
+        "name": "Employment",
+        "kind": "m",
+        "expression": [
+          "let",
+          "    Source = _bridge_Employment,",
+          "    #\"Duplicated Column\" = Table.DuplicateColumn(Source, \"srky_Employment\", \"srky_Employment - Copy\"),",
+          "    #\"Renamed Columns\" = Table.RenameColumns(#\"Duplicated Column\",{{\"srky_Employment - Copy\", \"Employment Info\"}}),",
+          "    #\"Removed Duplicates\" = Table.Distinct(#\"Renamed Columns\", {\"Employment Info\"}),",
+          "    #\"Removed Columns\" = Table.RemoveColumns(#\"Removed Duplicates\",{\"srky_Employment_Quote\"})",
+          "in",
+          "    #\"Removed Columns\""
+        ]
+      },
+      {
+        "name": "_bridge_Employment",
+        "kind": "m",
+        "expression": [
+          "let",
+          "    Source = #\"SQL/localhost;demodwjrdb\",",
+          "    dbo_dim_Employment = Source{[Schema=\"dbo\",Item=\"dim_Employment\"]}[Data],",
+          "    #\"Expanded fact_Quotes\" = Table.ExpandTableColumn(dbo_dim_Employment, \"fact_Quotes\", {\"tableId\"}, {\"fact_Quotes.tableId\"}),",
+          "    #\"Removed Columns\" = Table.RemoveColumns(#\"Expanded fact_Quotes\",{\"HASH_EmploymentInfo\"}),",
+          "    #\"Added Custom\" = Table.AddColumn(#\"Removed Columns\", \"srky_Quote_Employment\", each [srky_Employment] & \"-\" & [fact_Quotes.tableId]),",
+          "    #\"Removed Columns1\" = Table.RemoveColumns(#\"Added Custom\",{\"srky_Quote_Employment\"}),",
+          "    #\"Merged Columns\" = Table.CombineColumns(Table.TransformColumnTypes(#\"Removed Columns1\", {{\"srky_Employment\", type text}, {\"fact_Quotes.tableId\", type text}}, \"en-GB\"),{\"srky_Employment\", \"fact_Quotes.tableId\"},Combiner.CombineTextByDelimiter(\":\", QuoteStyle.None),\"srky_Employment_Quote\"),",
+          "    #\"Unpivoted Columns\" = Table.UnpivotOtherColumns(#\"Merged Columns\", {\"srky_Employment_Quote\"}, \"Attribute\", \"Value\"),",
+          "    #\"Renamed Columns\" = Table.RenameColumns(#\"Unpivoted Columns\",{{\"Attribute\", \"srky_Employment\"}}),",
+          "    #\"Filtered Rows\" = Table.SelectRows(#\"Renamed Columns\", each [Value] <> null and [Value] <> \"\"),",
+          "    #\"Removed Columns2\" = Table.RemoveColumns(#\"Filtered Rows\",{\"Value\"})",
+          "in",
+          "    #\"Removed Columns2\""
+        ]
+      },
+      {
+        "name": "_bridge_ProductInfo",
+        "kind": "m",
+        "expression": [
+          "let",
+          "    Source = #\"SQL/localhost;demodwjrdb\",",
+          "    dbo_dim_ProductInfo = Source{[Schema=\"dbo\",Item=\"dim_ProductInfo\"]}[Data],",
+          "    #\"Removed Columns\" = Table.RemoveColumns(dbo_dim_ProductInfo,{\"HASH_ProductInfo\"}),",
+          "    #\"Expanded fact_Quotes\" = Table.ExpandTableColumn(#\"Removed Columns\", \"fact_Quotes\", {\"tableId\"}, {\"fact_Quotes.tableId\"}),",
+          "    #\"Filtered Rows\" = Table.SelectRows(#\"Expanded fact_Quotes\", each [fact_Quotes.tableId] <> null and [fact_Quotes.tableId] <> \"\"),",
+          "    #\"Reordered Columns\" = Table.ReorderColumns(#\"Filtered Rows\",{\"Product_Info_1\", \"Product_Info_2\", \"Product_Info_3\", \"Product_Info_4\", \"Product_Info_5\", \"Product_Info_6\", \"Product_Info_7\", \"srky_ProductInfo\", \"fact_Quotes.tableId\"}),",
+          "    #\"Merged Columns\" = Table.CombineColumns(Table.TransformColumnTypes(#\"Reordered Columns\", {{\"srky_ProductInfo\", type text}, {\"fact_Quotes.tableId\", type text}}, \"en-GB\"),{\"srky_ProductInfo\", \"fact_Quotes.tableId\"},Combiner.CombineTextByDelimiter(\":\", QuoteStyle.None),\"srky_ProductInfo_Quote\"),",
+          "    #\"Unpivoted Columns\" = Table.UnpivotOtherColumns(#\"Merged Columns\", {\"srky_ProductInfo_Quote\"}, \"Attribute\", \"Value\"),",
+          "    #\"Removed Columns1\" = Table.RemoveColumns(#\"Unpivoted Columns\",{\"Value\"}),",
+          "    #\"Renamed Columns\" = Table.RenameColumns(#\"Removed Columns1\",{{\"Attribute\", \"srky_ProductInfo\"}})",
+          "in",
+          "    #\"Renamed Columns\""
+        ]
+      },
+      {
+        "name": "_bridge_Family",
+        "kind": "m",
+        "expression": [
+          "let",
+          "    Source = #\"SQL/localhost;demodwjrdb\",",
+          "    dbo_dim_Family = Source{[Schema=\"dbo\",Item=\"dim_Family\"]}[Data],",
+          "    #\"Expanded fact_Quotes\" = Table.ExpandTableColumn(dbo_dim_Family, \"fact_Quotes\", {\"tableId\"}, {\"fact_Quotes.tableId\"}),",
+          "    #\"Removed Columns\" = Table.RemoveColumns(#\"Expanded fact_Quotes\",{\"HASH_Family_Hist\"}),",
+          "    #\"Merged Columns\" = Table.CombineColumns(Table.TransformColumnTypes(#\"Removed Columns\", {{\"srky_Family\", type text}, {\"fact_Quotes.tableId\", type text}}, \"en-GB\"),{\"srky_Family\", \"fact_Quotes.tableId\"},Combiner.CombineTextByDelimiter(\":\", QuoteStyle.None),\"srky_Family_Quote\"),",
+          "    #\"Unpivoted Columns\" = Table.UnpivotOtherColumns(#\"Merged Columns\", {\"srky_Family_Quote\"}, \"Attribute\", \"Value\"),",
+          "    #\"Renamed Columns\" = Table.RenameColumns(#\"Unpivoted Columns\",{{\"Attribute\", \"srky_Family\"}}),",
+          "    #\"Removed Columns1\" = Table.RemoveColumns(#\"Renamed Columns\",{\"Value\"})",
+          "in",
+          "    #\"Removed Columns1\""
+        ]
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "500"
+      }
+    ]
+  }
+}

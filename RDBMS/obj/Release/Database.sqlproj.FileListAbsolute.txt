@@ -7,3 +7,8 @@ C:\Src\DWdemoProj\RDBMS\obj\Release\postdeploy.sql
 C:\Src\DWdemoProj\RDBMS\obj\Release\predeploy.sql
 C:\Src\DWdemoProj\RDBMS\obj\Release\Database.dll
 C:\Src\DWdemoProj\RDBMS\obj\Release\Database.pdb
+C:\Src\AzureDWDemo\RDBMS\bin\Release\Database.dacpac
+C:\Src\AzureDWDemo\RDBMS\bin\Release\Database.dll
+C:\Src\AzureDWDemo\RDBMS\bin\Release\Database.pdb
+C:\Src\AzureDWDemo\RDBMS\obj\Release\Database.dll
+C:\Src\AzureDWDemo\RDBMS\obj\Release\Database.pdb

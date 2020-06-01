@@ -1,6 +1,7 @@
 ﻿CREATE VIEW [dbo].[vw_fact_Quotes] 
 AS /****** Script for SelectTopNRows command from SSMS  ******/ 
-  SELECT [id], 
+  SELECT [tableId],
+         [id], 
          [hash_insuredinfo], 
          [hash_insurancehistory], 
          [hash_medical_hist], 

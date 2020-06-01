@@ -1,7 +1,7 @@
 # DW Dev pipeline
 
 trigger:
-- master
+- develop
 
 pool:
   vmImage: 'windows-latest'
