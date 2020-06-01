@@ -1,7 +1,7 @@
 # DW Dev pipeline
 
 trigger:
-- master
+- develop
 
 pool:
   vmImage: 'windows-latest'
@@ -23,6 +23,7 @@ steps:
       Write-Host "$(Get-Date) Binaries Folder:$(Build.BinariesDirectory), Build Definition Name:$(Build.DefinitionName), Build StagingDirectory Name:$(Build.StagingDirectory)";
       Write-Host "$(Get-Date) Build source Version:$(Build.SourceVersion), Build Source Branch:$(Build.SourceBranch), Build Repository Name: $(Build.Repository.Name)";
       Write-Host "$(Get-Date) $((Get-ChildItem).FullName)"
+
 - task: SqlAzureDacpacDeployment@1
   inputs:
     azureSubscription: 'Pay-As-You-Go($(AzureSubscriptionX))'
