@@ -5,3 +5,10 @@ C:\Src\AzureDWDemo\TabularProject\obj\Development\TabularProject.smproj.CoreComp
 C:\Src\AzureDWDemo\TabularProject\obj\Development\Model.asdatabase
 C:\Src\AzureDWDemo\TabularProject\obj\Development\Model.deploymentoptions
 C:\Src\AzureDWDemo\TabularProject\obj\Development\Model.deploymenttargets
+C:\Src\AzureDwDemo_v2\TabularProject\bin\Model.asdatabase
+C:\Src\AzureDwDemo_v2\TabularProject\bin\Model.deploymenttargets
+C:\Src\AzureDwDemo_v2\TabularProject\bin\Model.deploymentoptions
+C:\Src\AzureDwDemo_v2\TabularProject\obj\Development\TabularProject.smproj.CoreCompileInputs.cache
+C:\Src\AzureDwDemo_v2\TabularProject\obj\Development\Model.asdatabase
+C:\Src\AzureDwDemo_v2\TabularProject\obj\Development\Model.deploymentoptions
+C:\Src\AzureDwDemo_v2\TabularProject\obj\Development\Model.deploymenttargets
